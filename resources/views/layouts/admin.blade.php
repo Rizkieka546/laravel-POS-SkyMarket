@@ -68,7 +68,7 @@
                 <div class="sidebar-content">
                     <ul class="nav nav-secondary">
                         <li class="nav-item">
-                            <a href="#">
+                            <a href="{{ route('kategori.index') }}">
                                 <i class="fas fa-desktop"></i>
                                 <p>Kategori</p>
                             </a>

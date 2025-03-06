@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KasirController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ManajerController;
 use App\Http\Controllers\RegisterController;
@@ -21,6 +22,14 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 // Role -> Admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/dashboard-admin', [AdminController::class, 'index'])->name('dashboard.admin');
+
+    // Kategori
+    Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
+    Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
+    Route::post('/kategori', [KategoriController::class, 'store'])->name('kategori.store');
+    Route::get('/kategori/{id}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
+    Route::put('/kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
+    Route::delete('/kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
 });
 
 // Role -> Kasir
