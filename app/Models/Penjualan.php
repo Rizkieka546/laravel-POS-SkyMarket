@@ -9,7 +9,11 @@ class Penjualan extends Model
 {
     use HasFactory;
     protected $table = 'penjualan';
-    protected $fillable = ['no_faktur', 'tgl_faktur', 'total_bayar', 'diskon', 'status_penjualan', 'pelanggan_id', 'user_id'];
+    protected $fillable = ['no_faktur', 'tgl_faktur', 'total_bayar', 'pelanggan_id', 'user_id'];
+
+    protected $casts = [
+        'tgl_faktur' => 'datetime',
+    ];
 
     public function pelanggan()
     {

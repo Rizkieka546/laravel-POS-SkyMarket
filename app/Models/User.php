@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $fillable = ['name', 'email', 'password', 'role', 'membership'];
+    protected $fillable = ['name', 'email', 'password', 'role'];
 
     protected $hidden = ['password'];
 
@@ -18,19 +18,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // Relasi ke tabel Barang (barang yang dimasukkan oleh user)
     public function barang()
     {
         return $this->hasMany(Barang::class);
     }
 
-    // Relasi ke tabel Penjualan (transaksi yang dilakukan oleh user)
     public function penjualan()
     {
         return $this->hasMany(Penjualan::class);
     }
 
-    // Relasi ke tabel Pembelian (pembelian yang dilakukan oleh user)
     public function pembelian()
     {
         return $this->hasMany(Pembelian::class);

@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('kode_masuk', 50)->unique();
             $table->date('tanggal_masuk');
             $table->double('total');
-            $table->enum('status_pembelian', ['pending', 'selesai', 'dibatalkan'])->default('pending');
             $table->unsignedBigInteger('pemasok_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

@@ -14,11 +14,9 @@ return new class extends Migration
         Schema::create('penjualan', function (Blueprint $table) {
             $table->id();
             $table->string('no_faktur', 50)->unique();
-            $table->date('tgl_faktur');
+            $table->datetime('tgl_faktur');
             $table->double('total_bayar');
-            $table->double('diskon')->default(0);
-            $table->enum('status_penjualan', ['pending', 'selesai', 'dibatalkan'])->default('pending');
-            $table->unsignedBigInteger('pelanggan_id');
+            $table->unsignedBigInteger('pelanggan_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

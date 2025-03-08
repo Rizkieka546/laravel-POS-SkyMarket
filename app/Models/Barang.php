@@ -8,12 +8,30 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
     use HasFactory;
-    protected $table = 'barang';
-    protected $fillable = ['kode_barang', 'produk_id', 'kategori_id', 'nama_barang', 'satuan', 'harga_jual', 'stok', 'stok_minimal', 'ditarik', 'user_id'];
 
-    public function produk()
+    protected $table = 'barang';
+
+    protected $fillable = [
+        'kode_barang',
+        'kategori_id',
+        'nama_barang',
+        'harga_beli',
+        'harga_jual',
+        'stok',
+        'stok_minimal',
+        'gambar',
+        'ditarik',
+        'user_id'
+    ];
+
+    public function kategori()
     {
-        return $this->belongsTo(Produk::class);
+        return $this->belongsTo(Kategori::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function detailPenjualan()

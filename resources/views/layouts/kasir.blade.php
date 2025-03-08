@@ -10,6 +10,7 @@
     <!-- Fonts and icons -->
     <script src="{{ asset('assets/js/plugin/webfront/webfront.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugin/webfont/webfont.min.js') }}"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 
     <script>
     WebFont.load({
@@ -68,21 +69,9 @@
                 <div class="sidebar-content">
                     <ul class="nav nav-secondary">
                         <li class="nav-item">
-                            <a href="{{ route('kategori.index') }}">
+                            <a href="{{ route('penjualan.index') }}">
                                 <i class="fas fa-desktop"></i>
-                                <p>Kategori</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('barang.index') }}">
-                                <i class="fas fa-desktop"></i>
-                                <p>Barang</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('pembelian.index')}}">
-                                <i class="fas fa-desktop"></i>
-                                <p>Pembelian Barang</p>
+                                <p>Penjualan</p>
                             </a>
                         </li>
                     </ul>

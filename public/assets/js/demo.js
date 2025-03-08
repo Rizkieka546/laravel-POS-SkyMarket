@@ -190,7 +190,7 @@ Circles.create({
 })
 
 //Notify
-$.notify({
+{/* $.notify({
 	icon: 'icon-bell',
 	title: 'Skymaret',
 	message: 'Selamat Datang',
@@ -201,7 +201,7 @@ $.notify({
 		align: "right"
 	},
 	time: 1000,
-});
+}); */}
 
 // Jsvectormap
 var world_map = new jsVectorMap({
