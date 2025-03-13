@@ -18,6 +18,10 @@ return new class extends Migration
             $table->double('total_bayar');
             $table->unsignedBigInteger('pelanggan_id')->nullable();
             $table->unsignedBigInteger('user_id');
+            $table->string('duitku_reference')->nullable()->unique();
+            $table->enum('metode_pembayaran', ['cash', 'duitku'])->default('cash');
+            $table->enum('status_pembayaran', ['pending', 'lunas', 'batal'])->default('pending');
+            $table->string('duitku_payment_url')->nullable();
             $table->timestamps();
 
             $table->foreign('pelanggan_id')->references('id')->on('pelanggan')->onDelete('cascade');

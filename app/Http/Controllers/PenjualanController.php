@@ -15,7 +15,7 @@ class PenjualanController extends Controller
     public function index()
     {
         $penjualans = Penjualan::with('detailPenjualan.barang')->orderBy('created_at', 'desc')->get();
-        return view('admin.penjualan.index', compact('penjualans'));
+        return view('kasir.penjualan.index', compact('penjualans'));
     }
 
     public function create()
@@ -23,7 +23,7 @@ class PenjualanController extends Controller
         $pelanggans = Pelanggan::all();
         $barangs = Barang::where('stok', '>', 1)->get();
 
-        return view('admin.penjualan.create', compact('pelanggans', 'barangs'));
+        return view('kasir.penjualan.create', compact('pelanggans', 'barangs'));
     }
 
 
@@ -48,6 +48,7 @@ class PenjualanController extends Controller
                 'total_bayar' => 0,
                 'pelanggan_id' => $request->pelanggan_id ?? null,
                 'user_id' => Auth::id(),
+                'status_pembayaran' => 'pending',
             ]);
 
             $totalHarga = 0;
@@ -71,7 +72,8 @@ class PenjualanController extends Controller
             $penjualan->update(['total_bayar' => $totalHarga]);
 
             DB::commit();
-            return redirect()->route('penjualan.index')->with('success', 'Transaksi berhasil disimpan');
+
+            return redirect()->route('penjualan.pembayaran', ['id' => $penjualan->id]);
         } catch (\Exception $e) {
             DB::rollback();
             return back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
@@ -79,9 +81,42 @@ class PenjualanController extends Controller
     }
 
 
+    public function pembayaran($id)
+    {
+        $penjualan = Penjualan::with('detailPenjualan.barang')->findOrFail($id);
+        return view('kasir.penjualan.pembayaran', compact('penjualan'));
+    }
+
+
+    public function prosesPembayaran(Request $request, $id)
+    {
+        $request->validate([
+            'uang_diterima' => 'required|numeric|min:0',
+        ]);
+
+        $penjualan = Penjualan::findOrFail($id);
+        $uangDiterima = $request->uang_diterima;
+        $totalBayar = $penjualan->total_bayar;
+
+        if ($uangDiterima < $totalBayar) {
+            return back()->with('error', 'Uang yang diberikan kurang.');
+        }
+
+        $kembalian = $uangDiterima - $totalBayar;
+
+        $penjualan->update([
+            'status_pembayaran' => 'lunas',
+        ]);
+
+        return view('kasir.penjualan.struk', compact('penjualan', 'uangDiterima', 'kembalian'));
+    }
+
+
+
+
     public function show($id)
     {
         $penjualan = Penjualan::with('detailPenjualan.barang')->findOrFail($id);
-        return view('admin.penjualan.show', compact('penjualan'));
+        return view('kasir.penjualan.show', compact('penjualan'));
     }
 }

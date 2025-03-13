@@ -20,6 +20,7 @@ class Barang extends Model
         'stok',
         'stok_minimal',
         'gambar',
+        'satuan',
         'ditarik',
         'user_id'
     ];

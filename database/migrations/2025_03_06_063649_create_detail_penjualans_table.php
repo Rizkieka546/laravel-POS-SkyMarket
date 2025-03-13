@@ -20,8 +20,8 @@ return new class extends Migration
             $table->double('sub_total');
             $table->timestamps();
 
-            $table->foreign('penjualan_id')->references('id')->on('penjualan')->onDelete('cascade');
-            $table->foreign('barang_id')->references('id')->on('barang')->onDelete('cascade');
+            $table->foreign('penjualan_id')->references('id')->on('penjualan')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('barang_id')->references('id')->on('barang')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

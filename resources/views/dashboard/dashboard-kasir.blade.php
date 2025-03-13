@@ -1,7 +1,7 @@
 @extends('layouts.kasir')
 
 @section('content')
-<div class="container">
+<div class="container p-5">
     <div class="page-inner">
         <div class="page-header">
             <h3 class="fw-bold mb-3">DataTables.Net</h3>

@@ -16,16 +16,16 @@ return new class extends Migration
             $table->string('kode_barang', 50)->unique();
             $table->unsignedBigInteger('kategori_id');
             $table->string('nama_barang', 100);
-            $table->string('harga_beli', 10);
-            $table->double('harga_jual');
-            $table->integer('stok');
-            $table->integer('stok_minimal')->default(1);
+            $table->enum('satuan', ['pcs', 'pack', 'dus', 'karung', 'liter', 'gram']);
+            $table->decimal('harga_beli', 10, 2);
+            $table->decimal('harga_jual', 10, 2);
+            $table->unsignedInteger('stok')->default(0);
+            $table->unsignedInteger('stok_minimal')->default(1);
             $table->string('gambar')->nullable();
-            $table->boolean('ditarik')->default(false);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            $table->foreign('kategori_id')->references('id')->on('kategori')->onDelete('cascade');
+            $table->foreign('kategori_id')->references('id')->on('kategori')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

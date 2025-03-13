@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Pemasok;
+use App\Models\Barang;
 use Illuminate\Database\Seeder;
 
-class PemasokSeeder extends Seeder
+class BarangSeeder extends Seeder
 {
     public function run()
     {
-        Pemasok::factory()->count(10)->create();
+        Barang::factory(15)->create();
     }
 }

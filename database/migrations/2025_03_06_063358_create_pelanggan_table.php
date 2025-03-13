@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('alamat', 200);
             $table->string('no_telp', 20);
             $table->string('email', 50)->nullable();
+            $table->enum('membership', ['none', 'silver'])->default('none');
             $table->timestamps();
         });
     }
