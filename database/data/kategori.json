@@ -1,0 +1,24 @@
+{
+    "kategori": [
+        {
+            "id": 1,
+            "nama_kategori": "Makanan"
+        },
+        {
+            "id": 2,
+            "nama_kategori": "Minuman"
+        },
+        {
+            "id": 3,
+            "nama_kategori": "Bahan Makanan / Bumbu"
+        },
+        {
+            "id": 4,
+            "nama_kategori": "Alat Tulis & Kantor"
+        },
+        {
+            "id": 5,
+            "nama_kategori": "Mainan & Hobi"
+        }
+    ]
+}

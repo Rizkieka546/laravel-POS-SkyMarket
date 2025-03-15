@@ -1,0 +1,94 @@
+{
+    "pelanggan": [
+        {
+            "id": 1,
+            "kode_pelanggan": "PLG001",
+            "nama": "Andi Saputra",
+            "alamat": "Jl. Merdeka No.1",
+            "no_telp": "081234567890",
+            "email": "andi@example.com",
+            "membership": "none"
+        },
+        {
+            "id": 2,
+            "kode_pelanggan": "PLG002",
+            "nama": "Siti Aminah",
+            "alamat": "Jl. Sudirman No.2",
+            "no_telp": "081298765432",
+            "email": "siti@example.com",
+            "membership": "none"
+        },
+        {
+            "id": 3,
+            "kode_pelanggan": "PLG003",
+            "nama": "Budi Santoso",
+            "alamat": "Jl. Thamrin No.3",
+            "no_telp": "081212345678",
+            "email": "budi@example.com",
+            "membership": "none"
+        },
+        {
+            "id": 4,
+            "kode_pelanggan": "PLG004",
+            "nama": "Dewi Lestari",
+            "alamat": "Jl. Diponegoro No.4",
+            "no_telp": "081265432198",
+            "email": "dewi@example.com",
+            "membership": "none"
+        },
+        {
+            "id": 5,
+            "kode_pelanggan": "PLG005",
+            "nama": "Rudi Hartono",
+            "alamat": "Jl. Gajah Mada No.5",
+            "no_telp": "081278965432",
+            "email": "rudi@example.com",
+            "membership": "none"
+        },
+        {
+            "id": 6,
+            "kode_pelanggan": "PLG006",
+            "nama": "Ayu Kartika",
+            "alamat": "Jl. Hayam Wuruk No.6",
+            "no_telp": "081232198765",
+            "email": "ayu@example.com",
+            "membership": "none"
+        },
+        {
+            "id": 7,
+            "kode_pelanggan": "PLG007",
+            "nama": "Dani Pratama",
+            "alamat": "Jl. Sisingamangaraja No.7",
+            "no_telp": "081245678901",
+            "email": "dani@example.com",
+            "membership": "none"
+        },
+        {
+            "id": 8,
+            "kode_pelanggan": "PLG008",
+            "nama": "Mira Setiawan",
+            "alamat": "Jl. Pattimura No.8",
+            "no_telp": "081298712345",
+            "email": "mira@example.com",
+            "membership": "none"
+        },
+        {
+            "id": 9,
+            "kode_pelanggan": "PLG009",
+            "nama": "Yusuf Hamzah",
+            "alamat": "Jl. Panglima Polim No.9",
+            "no_telp": "081234987654",
+            "email": "yusuf@example.com",
+            "membership": "none"
+        },
+        {
+            "id": 10,
+            "kode_pelanggan": "PLG010",
+            "nama": "Nina Rahmawati",
+            "alamat": "Jl. Imam Bonjol No.10",
+            "no_telp": "081256789012",
+            "email": "nina@example.com",
+            "membership": "none"
+        }
+    ]
+}

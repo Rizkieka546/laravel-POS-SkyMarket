@@ -4,35 +4,29 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Pelanggan;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Schema;
 
 class PelangganSeeder extends Seeder
 {
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
+        Pelanggan::truncate();
+        Schema::enableForeignKeyConstraints();
 
-        Pelanggan::insert([
-            [
-                'kode_pelanggan' => 'PLG001',
-                'nama' => 'Ahmad Syahputra',
-                'alamat' => 'Jl. Merdeka No. 10, Jakarta',
-                'no_telp' => '081234567890',
-                'email' => 'ahmad@example.com',
-            ],
-            [
-                'kode_pelanggan' => 'PLG002',
-                'nama' => 'Siti Aisyah',
-                'alamat' => 'Jl. Sudirman No. 20, Bandung',
-                'no_telp' => '082345678901',
-                'email' => 'siti@example.com',
-            ],
-            [
-                'kode_pelanggan' => 'PLG003',
-                'nama' => 'Budi Santoso',
-                'alamat' => 'Jl. Gajah Mada No. 5, Surabaya',
-                'no_telp' => '083456789012',
-                'email' => 'budi@example.com',
-            ],
-        ]);
+        $file = File::get(database_path('data/pelanggan.json'));
+        $data = json_decode($file);
+
+        foreach ($data->pelanggan as $item) {
+            Pelanggan::create([
+                'kode_pelanggan' => $item->kode_pelanggan,
+                'nama' => $item->nama,
+                'alamat' => $item->alamat,
+                'no_telp' => $item->no_telp,
+                'email' => $item->email,
+                'membership' => $item->membership,
+            ]);
+        }
     }
 }

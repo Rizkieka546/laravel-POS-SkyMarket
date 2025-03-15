@@ -1,0 +1,44 @@
+{
+    "pemasok": [
+        {
+            "id": 1,
+            "nama_pemasok": "PT Maju Sejahtera",
+            "alamat": "Jl. Merdeka No. 10, Jakarta",
+            "telepon": "0211234567",
+            "email": "maju@example.com",
+            "catatan": "Pemasok makanan."
+        },
+        {
+            "id": 2,
+            "nama_pemasok": "CV Sumber Berkah",
+            "alamat": "Jl. Sudirman No. 15, Bandung",
+            "telepon": "0227654321",
+            "email": "sumberberkah@example.com",
+            "catatan": "Distributor minuman."
+        },
+        {
+            "id": 3,
+            "nama_pemasok": "UD Makmur Sentosa",
+            "alamat": "Jl. Diponegoro No. 20, Surabaya",
+            "telepon": "0319876543",
+            "email": "makmur@example.com",
+            "catatan": "Supplier Bahan Makanan / Bumbu ."
+        },
+        {
+            "id": 4,
+            "nama_pemasok": "PT Aneka Elektronik",
+            "alamat": "Jl. Gajah Mada No. 25, Semarang",
+            "telepon": "0245678910",
+            "email": "anekaelektronik@example.com",
+            "catatan": "Menyediakan peralatan Alat Tulis & Kantor."
+        },
+        {
+            "id": 5,
+            "nama_pemasok": "CV Sinar Jaya",
+            "alamat": "Jl. Pattimura No. 30, Medan",
+            "telepon": "0612345678",
+            "email": "sinarjaya@example.com",
+            "catatan": "Distributor Mainan & Hobi."
+        }
+    ]
+}

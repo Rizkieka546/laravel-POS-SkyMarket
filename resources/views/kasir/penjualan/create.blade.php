@@ -3,29 +3,30 @@
 @section('content')
 <!-- Navbar -->
 <header class="bg-white shadow-md py-4 px-6 flex justify-between items-center border-b">
-    <h1 class="text-xl font-semibold text-indigo-700">Dashboard</h1>
+    <h1 class="text-xl font-semibold text-teal-700">Dashboard</h1>
     <span class="text-gray-700 font-medium">Halo, {{ Auth::user()->name }}</span>
 </header>
 
 <!-- Content -->
 <main class="flex-1 p-6 flex gap-6">
     <!-- Produk List -->
-    <div class="flex-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div class="flex-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-fr">
         @foreach ($barangs as $barang)
         <button
             onclick="tambahKeKeranjang({{ $barang->id }}, '{{ $barang->nama_barang }}', {{ $barang->harga_jual }}, {{ $barang->stok }})"
-            class="p-4 bg-white shadow-md rounded-lg hover:shadow-xl transform transition hover:scale-105">
+            class="p-4 bg-white shadow-md rounded-lg hover:shadow-xl transform transition hover:scale-105 flex flex-col items-center aspect-square">
             <img src="{{ asset($barang->gambar ? 'storage/' . $barang->gambar : 'images/default.jpg') }}"
-                alt="{{ $barang->nama_barang }}" class="w-full h-32 object-cover rounded-md mb-3">
-            <h2 class="text-lg font-semibold text-gray-800">{{ $barang->nama_barang }}</h2>
-            <p class="text-indigo-600 font-bold">Rp {{ number_format($barang->harga_jual, 0, ',', '.') }}</p>
-            <span class="text-sm text-gray-600">Stok: {{ $barang->stok }}</span>
+                alt="{{ $barang->nama_barang }}" class="w-full h-24 object-cover rounded-md mb-3">
+            <h2 class="text-lg font-semibold text-gray-800 text-center">{{ $barang->nama_barang }}</h2>
+            <p class="text-teal-600 font-bold text-center">Rp {{ number_format($barang->harga_jual, 0, ',', '.') }}
+            </p>
+            <span class="text-sm text-gray-600 text-center">{{ $barang->stok }}</span>
         </button>
         @endforeach
     </div>
 
     <!-- Keranjang -->
-    <div class="w-96 bg-white p-6 border-l shadow-md rounded-lg h-screen overflow-hidden">
+    <div class="w-96 -m-6 bg-white p-6 border-l shadow-md rounded-lg h-screen overflow-hidden">
         <h2 class="text-xl font-bold mb-4 text-center text-gray-800">Keranjang</h2>
         <form action="{{ route('penjualan.store') }}" method="POST">
             @csrf
@@ -41,7 +42,7 @@
                     <span id="total">Rp 0</span>
                 </div>
                 <button type="submit"
-                    class="mt-4 bg-indigo-500 text-white w-full py-3 rounded-lg hover:bg-indigo-600 transition">
+                    class="mt-4 bg-teal-500 text-white w-full py-3 rounded-lg hover:bg-teal-600 transition">
                     Bayar Sekarang
                 </button>
             </div>
@@ -85,7 +86,7 @@ function updateKeranjang() {
                     <div class='flex justify-between items-center p-3 bg-gray-100 rounded-lg shadow'>
                         <div>
                             <h3 class='text-lg font-semibold text-gray-800'>${item.nama}</h3>
-                            <p class='text-indigo-600 font-bold'>Rp ${item.harga.toLocaleString()}</p>
+                            <p class='text-teal-600 font-bold'>Rp ${item.harga.toLocaleString()}</p>
                             <p class='text-sm text-gray-600'>Stok: ${item.stok}</p>
                         </div>
                         <div class='flex items-center'>

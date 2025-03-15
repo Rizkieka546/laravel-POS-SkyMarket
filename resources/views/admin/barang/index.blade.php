@@ -41,7 +41,7 @@
                 @foreach($barangs as $barang)
                 <tr class="hover:bg-gray-100 transition">
                     <td class="p-4">
-                        <img src="{{ asset($barang->gambar ? 'storage/' . $barang->gambar : 'images/default.jpg') }}"
+                        <img src="{{ asset($barang->gambar ? 'storage/barang/' . $barang->gambar : 'images/default.jpg') }}"
                             class="w-14 h-14 object-cover rounded-lg border shadow">
                     </td>
                     <td class="p-4 text-gray-700">{{ $barang->kode_barang }}</td>
@@ -66,7 +66,7 @@
     <div id="gridView" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6 hidden">
         @foreach($barangs as $barang)
         <div class="bg-white shadow-lg rounded-lg overflow-hidden transition hover:shadow-xl">
-            <img src="{{ asset($barang->gambar ? 'storage/' . $barang->gambar : 'images/default.jpg') }}"
+            <img src="{{ asset($barang->gambar ? 'storage/barang/' . $barang->gambar : 'images/default.jpg') }}"
                 class="w-full h-40 object-cover">
             <div class="p-5 text-center">
                 <h5 class="text-lg font-semibold text-gray-900">{{ $barang->nama_barang }}</h5>

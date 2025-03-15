@@ -26,7 +26,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Role -> Admin
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/dashboard-admin', [AdminController::class, 'index'])->name('dashboard.admin');
+    Route::get('/dashboard-admin', [AdminController::class, 'dashboard'])->name('dashboard.admin');
 
     // Kategori
     Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');

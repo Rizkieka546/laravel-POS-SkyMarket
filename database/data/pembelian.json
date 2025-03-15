@@ -1,0 +1,404 @@
+{
+    "pembelian": [
+        {
+            "id": 1,
+            "kode_masuk": "TRX001",
+            "tanggal_masuk": "2025-10-18",
+            "total": 177000,
+            "pemasok_id": 1,
+            "user_id": 3
+        },
+        {
+            "id": 2,
+            "kode_masuk": "TRX002",
+            "tanggal_masuk": "2025-01-21",
+            "total": 51000,
+            "pemasok_id": 5,
+            "user_id": 4
+        },
+        {
+            "id": 3,
+            "kode_masuk": "TRX003",
+            "tanggal_masuk": "2025-10-20",
+            "total": 723000,
+            "pemasok_id": 5,
+            "user_id": 4
+        },
+        {
+            "id": 4,
+            "kode_masuk": "TRX004",
+            "tanggal_masuk": "2025-04-29",
+            "total": 392000,
+            "pemasok_id": 4,
+            "user_id": 4
+        },
+        {
+            "id": 5,
+            "kode_masuk": "TRX005",
+            "tanggal_masuk": "2025-08-04",
+            "total": 323000,
+            "pemasok_id": 1,
+            "user_id": 2
+        },
+        {
+            "id": 6,
+            "kode_masuk": "TRX006",
+            "tanggal_masuk": "2025-03-02",
+            "total": 39000,
+            "pemasok_id": 4,
+            "user_id": 1
+        },
+        {
+            "id": 7,
+            "kode_masuk": "TRX007",
+            "tanggal_masuk": "2025-01-11",
+            "total": 940000,
+            "pemasok_id": 1,
+            "user_id": 3
+        },
+        {
+            "id": 8,
+            "kode_masuk": "TRX008",
+            "tanggal_masuk": "2025-07-08",
+            "total": 510000,
+            "pemasok_id": 1,
+            "user_id": 2
+        },
+        {
+            "id": 9,
+            "kode_masuk": "TRX009",
+            "tanggal_masuk": "2025-11-22",
+            "total": 166000,
+            "pemasok_id": 1,
+            "user_id": 4
+        },
+        {
+            "id": 10,
+            "kode_masuk": "TRX010",
+            "tanggal_masuk": "2025-06-05",
+            "total": 841000,
+            "pemasok_id": 2,
+            "user_id": 2
+        },
+        {
+            "id": 11,
+            "kode_masuk": "TRX011",
+            "tanggal_masuk": "2025-05-16",
+            "total": 950000,
+            "pemasok_id": 3,
+            "user_id": 1
+        },
+        {
+            "id": 12,
+            "kode_masuk": "TRX012",
+            "tanggal_masuk": "2025-01-07",
+            "total": 1805000,
+            "pemasok_id": 1,
+            "user_id": 1
+        },
+        {
+            "id": 13,
+            "kode_masuk": "TRX013",
+            "tanggal_masuk": "2025-09-11",
+            "total": 2250000,
+            "pemasok_id": 5,
+            "user_id": 4
+        },
+        {
+            "id": 14,
+            "kode_masuk": "TRX014",
+            "tanggal_masuk": "2025-08-16",
+            "total": 1125000,
+            "pemasok_id": 5,
+            "user_id": 1
+        },
+        {
+            "id": 15,
+            "kode_masuk": "TRX015",
+            "tanggal_masuk": "2025-07-04",
+            "total": 1284000,
+            "pemasok_id": 4,
+            "user_id": 1
+        },
+        {
+            "id": 16,
+            "kode_masuk": "TRX016",
+            "tanggal_masuk": "2025-12-06",
+            "total": 361000,
+            "pemasok_id": 3,
+            "user_id": 2
+        },
+        {
+            "id": 17,
+            "kode_masuk": "TRX017",
+            "tanggal_masuk": "2025-03-17",
+            "total": 209000,
+            "pemasok_id": 1,
+            "user_id": 1
+        },
+        {
+            "id": 18,
+            "kode_masuk": "TRX018",
+            "tanggal_masuk": "2025-06-20",
+            "total": 970000,
+            "pemasok_id": 2,
+            "user_id": 3
+        },
+        {
+            "id": 19,
+            "kode_masuk": "TRX019",
+            "tanggal_masuk": "2025-09-20",
+            "total": 1243000,
+            "pemasok_id": 2,
+            "user_id": 2
+        },
+        {
+            "id": 20,
+            "kode_masuk": "TRX020",
+            "tanggal_masuk": "2025-05-16",
+            "total": 2405000,
+            "pemasok_id": 5,
+            "user_id": 1
+        },
+        {
+            "id": 21,
+            "kode_masuk": "TRX021",
+            "tanggal_masuk": "2025-11-12",
+            "total": 743000,
+            "pemasok_id": 2,
+            "user_id": 4
+        },
+        {
+            "id": 22,
+            "kode_masuk": "TRX022",
+            "tanggal_masuk": "2025-11-17",
+            "total": 569000,
+            "pemasok_id": 5,
+            "user_id": 1
+        },
+        {
+            "id": 23,
+            "kode_masuk": "TRX023",
+            "tanggal_masuk": "2025-08-11",
+            "total": 384000,
+            "pemasok_id": 5,
+            "user_id": 1
+        },
+        {
+            "id": 24,
+            "kode_masuk": "TRX024",
+            "tanggal_masuk": "2025-05-05",
+            "total": 268000,
+            "pemasok_id": 5,
+            "user_id": 1
+        },
+        {
+            "id": 25,
+            "kode_masuk": "TRX025",
+            "tanggal_masuk": "2025-10-01",
+            "total": 1730000,
+            "pemasok_id": 5,
+            "user_id": 1
+        },
+        {
+            "id": 26,
+            "kode_masuk": "TRX026",
+            "tanggal_masuk": "2025-02-07",
+            "total": 368000,
+            "pemasok_id": 5,
+            "user_id": 2
+        },
+        {
+            "id": 27,
+            "kode_masuk": "TRX027",
+            "tanggal_masuk": "2025-11-16",
+            "total": 375000,
+            "pemasok_id": 1,
+            "user_id": 2
+        },
+        {
+            "id": 28,
+            "kode_masuk": "TRX028",
+            "tanggal_masuk": "2025-07-06",
+            "total": 22000,
+            "pemasok_id": 2,
+            "user_id": 1
+        },
+        {
+            "id": 29,
+            "kode_masuk": "TRX029",
+            "tanggal_masuk": "2025-08-07",
+            "total": 442000,
+            "pemasok_id": 5,
+            "user_id": 4
+        },
+        {
+            "id": 30,
+            "kode_masuk": "TRX030",
+            "tanggal_masuk": "2025-02-11",
+            "total": 1298000,
+            "pemasok_id": 1,
+            "user_id": 1
+        },
+        {
+            "id": 31,
+            "kode_masuk": "TRX031",
+            "tanggal_masuk": "2025-09-23",
+            "total": 420000,
+            "pemasok_id": 3,
+            "user_id": 2
+        },
+        {
+            "id": 32,
+            "kode_masuk": "TRX032",
+            "tanggal_masuk": "2025-08-23",
+            "total": 1104000,
+            "pemasok_id": 3,
+            "user_id": 3
+        },
+        {
+            "id": 33,
+            "kode_masuk": "TRX033",
+            "tanggal_masuk": "2025-07-07",
+            "total": 1351500,
+            "pemasok_id": 3,
+            "user_id": 4
+        },
+        {
+            "id": 34,
+            "kode_masuk": "TRX034",
+            "tanggal_masuk": "2025-07-25",
+            "total": 1584000,
+            "pemasok_id": 3,
+            "user_id": 3
+        },
+        {
+            "id": 35,
+            "kode_masuk": "TRX035",
+            "tanggal_masuk": "2025-12-27",
+            "total": 566000,
+            "pemasok_id": 4,
+            "user_id": 2
+        },
+        {
+            "id": 36,
+            "kode_masuk": "TRX036",
+            "tanggal_masuk": "2025-07-19",
+            "total": 175000,
+            "pemasok_id": 3,
+            "user_id": 4
+        },
+        {
+            "id": 37,
+            "kode_masuk": "TRX037",
+            "tanggal_masuk": "2025-04-28",
+            "total": 700000,
+            "pemasok_id": 4,
+            "user_id": 3
+        },
+        {
+            "id": 38,
+            "kode_masuk": "TRX038",
+            "tanggal_masuk": "2025-01-17",
+            "total": 1502000,
+            "pemasok_id": 5,
+            "user_id": 2
+        },
+        {
+            "id": 39,
+            "kode_masuk": "TRX039",
+            "tanggal_masuk": "2025-01-24",
+            "total": 605000,
+            "pemasok_id": 1,
+            "user_id": 3
+        },
+        {
+            "id": 40,
+            "kode_masuk": "TRX040",
+            "tanggal_masuk": "2025-12-16",
+            "total": 115000,
+            "pemasok_id": 2,
+            "user_id": 3
+        },
+        {
+            "id": 41,
+            "kode_masuk": "TRX041",
+            "tanggal_masuk": "2025-05-24",
+            "total": 21000,
+            "pemasok_id": 2,
+            "user_id": 3
+        },
+        {
+            "id": 42,
+            "kode_masuk": "TRX042",
+            "tanggal_masuk": "2025-10-04",
+            "total": 1712000,
+            "pemasok_id": 3,
+            "user_id": 2
+        },
+        {
+            "id": 43,
+            "kode_masuk": "TRX043",
+            "tanggal_masuk": "2025-10-05",
+            "total": 1926000,
+            "pemasok_id": 3,
+            "user_id": 4
+        },
+        {
+            "id": 44,
+            "kode_masuk": "TRX044",
+            "tanggal_masuk": "2025-11-09",
+            "total": 132000,
+            "pemasok_id": 5,
+            "user_id": 1
+        },
+        {
+            "id": 45,
+            "kode_masuk": "TRX045",
+            "tanggal_masuk": "2025-09-06",
+            "total": 1203000,
+            "pemasok_id": 4,
+            "user_id": 3
+        },
+        {
+            "id": 46,
+            "kode_masuk": "TRX046",
+            "tanggal_masuk": "2025-09-16",
+            "total": 526500,
+            "pemasok_id": 5,
+            "user_id": 3
+        },
+        {
+            "id": 47,
+            "kode_masuk": "TRX047",
+            "tanggal_masuk": "2025-06-22",
+            "total": 2127000,
+            "pemasok_id": 2,
+            "user_id": 3
+        },
+        {
+            "id": 48,
+            "kode_masuk": "TRX048",
+            "tanggal_masuk": "2025-12-06",
+            "total": 508000,
+            "pemasok_id": 3,
+            "user_id": 2
+        },
+        {
+            "id": 49,
+            "kode_masuk": "TRX049",
+            "tanggal_masuk": "2025-10-02",
+            "total": 536000,
+            "pemasok_id": 2,
+            "user_id": 1
+        },
+        {
+            "id": 50,
+            "kode_masuk": "TRX050",
+            "tanggal_masuk": "2025-12-28",
+            "total": 7000,
+            "pemasok_id": 4,
+            "user_id": 4
+        }
+    ]
+}
