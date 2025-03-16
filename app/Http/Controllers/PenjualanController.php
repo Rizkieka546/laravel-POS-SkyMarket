@@ -14,7 +14,7 @@ class PenjualanController extends Controller
 {
     public function index()
     {
-        $penjualans = Penjualan::with('detailPenjualan.barang')->orderBy('created_at', 'desc')->get();
+        $penjualans = Penjualan::with('detailPenjualan.barang')->orderBy('created_at', 'desc')->paginate(5);
         return view('kasir.penjualan.index', compact('penjualans'));
     }
 

@@ -10,11 +10,6 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function index()
-    {
-        return view('dashboard.dashboard-admin');
-    }
-
     public function dashboard()
     {
         // Statistik Utama
@@ -30,9 +25,12 @@ class AdminController extends Controller
             ->orderBy('bulan')
             ->get();
 
+
+
         // Grafik Stok Barang Berdasarkan Kategori
-        $stokPerKategori = Barang::selectRaw('kategori_id, SUM(stok) as total_stok')
-            ->groupBy('kategori_id')
+        $stokPerKategori = Barang::leftJoin('kategori as k', 'barang.kategori_id', '=', 'k.id')
+            ->selectRaw('k.nama_kategori, COALESCE(SUM(barang.stok), 0) as total_stok')
+            ->groupBy('k.nama_kategori')
             ->get();
 
         return view('dashboard.dashboard-admin', compact(

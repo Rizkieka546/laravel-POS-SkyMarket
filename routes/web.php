@@ -5,6 +5,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\LaporanKeuanganController;
+use App\Http\Controllers\LaporanPembelianController;
+use App\Http\Controllers\LaporanPenjualanController;
+use App\Http\Controllers\LaporanStokController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ManajerController;
 use App\Http\Controllers\PemasokController;
@@ -87,6 +92,16 @@ Route::middleware(['auth', 'role:kasir'])->group(function () {
 // Role -> Manajer
 Route::middleware(['auth', 'role:manajer'])->group(function () {
     Route::get('/dashboard-manajer', [ManajerController::class, 'index'])->name('dashboard.manajer');
+
+    Route::get('/laporan/penjualan', [LaporanPenjualanController::class, 'index'])->name('laporan.penjualan');
+    Route::get('/laporan/penjualan/{id}', [LaporanPenjualanController::class, 'show'])->name('laporan.penjualan.show');
+
+    Route::get('/laporan/pembelian', [LaporanPembelianController::class, 'index'])->name('laporan.pembelian');
+    Route::get('/laporan/pembelian/{id}', [LaporanPembelianController::class, 'show'])->name('laporan.pembelian.show');
+
+    Route::get('/laporan/stok', [LaporanStokController::class, 'index'])->name('laporan.stok');
+
+    Route::get('/laporan/keuangan', [LaporanKeuanganController::class, 'index'])->name('laporan.keuangan');
 });
 
 

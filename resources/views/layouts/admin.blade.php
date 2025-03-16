@@ -18,6 +18,12 @@
             <nav>
                 <ul>
                     <li class="mb-3">
+                        <a href="{{ route('dashboard.admin') }}"
+                            class="flex items-center px-4 py-2 rounded-lg hover:bg-teal-500">
+                            <i class="fa-solid fa-home mr-3"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="mb-3">
                         <a href="{{ route('kategori.index') }}"
                             class="flex items-center px-4 py-2 rounded-lg hover:bg-teal-500">
                             <i class="fa-solid fa-list mr-3"></i> Kategori

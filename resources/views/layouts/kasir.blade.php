@@ -10,38 +10,39 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body class="bg-gray-100">
-    <div class="flex h-screen">
-        <!-- Sidebar -->
-        <aside class="w-72 bg-gradient-to-b from-teal-400 to-teal-600 text-white p-6 flex flex-col shadow-lg">
-            <div class="text-center text-2xl font-bold mb-6">
-                <i class="fa-solid fa-store mr-2"></i> Skymarket
-            </div>
-            <nav class="space-y-4">
-                <a href="{{ route('penjualan.index') }}"
-                    class="flex items-center px-4 py-3 rounded-lg hover:bg-teal-500">
-                    <i class="fas fa-shopping-cart mr-3"></i> <span>Penjualan</span>
-                </a>
-                <a href="{{ route('penjualan.create') }}"
-                    class="flex items-center px-4 py-3 rounded-lg hover:bg-teal-500">
-                    <i class="fas fa-cash-register mr-3"></i> <span>Kasir</span>
-                </a>
-            </nav>
-            <div class="mt-auto">
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit"
-                        class="w-full bg-red-500 hover:bg-red-600 text-white px-4 py-3 rounded-lg flex items-center justify-center">
-                        <i class="fa-solid fa-sign-out-alt mr-2"></i> Logout
-                    </button>
-                </form>
-            </div>
-        </aside>
-
-        <!-- Main Content -->
-        <div class="flex-1 flex flex-col">
-            @yield('content')
+<body class="bg-gray-100 flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gradient-to-b from-teal-400 to-teal-600 text-white p-6 shadow-lg min-h-screen flex flex-col">
+        <div class="text-center text-2xl font-bold mb-6">
+            <i class="fa-solid fa-store mr-2"></i> Skymarket
         </div>
+        <nav class="space-y-4 flex-1">
+            <a href="{{ route('dashboard.kasir') }}" class="flex items-center px-4 py-3 rounded-lg hover:bg-teal-500">
+                <i class="fas fa-home mr-3"></i> <span>Dashboard</span>
+            </a>
+            <a href="{{ route('penjualan.index') }}" class="flex items-center px-4 py-3 rounded-lg hover:bg-teal-500">
+                <i class="fas fa-shopping-cart mr-3"></i> <span>Penjualan</span>
+            </a>
+            <a href="{{ route('penjualan.create') }}" class="flex items-center px-4 py-3 rounded-lg hover:bg-teal-500">
+                <i class="fas fa-cash-register mr-3"></i> <span>Kasir</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col min-h-screen">
+        <!-- Navbar -->
+        <header class="bg-white shadow-md py-4 px-6 gap-4 flex justify-end items-center border-b">
+            <span class="hidden md:inline">Halo, {{ Auth::user()->name }}</span>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="flex items-center text-black hover:text-red-400">
+                    <i class="fa-solid fa-sign-out-alt mr-2"></i> Logout
+                </button>
+            </form>
+        </header>
+
+        @yield('content')
     </div>
 </body>
 
