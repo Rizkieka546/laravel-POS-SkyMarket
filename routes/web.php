@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LaporanController;
@@ -12,11 +13,15 @@ use App\Http\Controllers\LaporanPenjualanController;
 use App\Http\Controllers\LaporanStokController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ManajerController;
+use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PemasokController;
 use App\Http\Controllers\PembelianController;
+use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
+use App\Models\Pelanggan;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -74,6 +79,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user/{user}', [UserController::class, 'update'])->name('user.update');
     Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+
+    Route::get('/pengajuan/admin', [AdminController::class, 'indexPengajuan'])->name('pengajuan.admin');
+    Route::put('/pengajuan/terima/{id}', [AdminController::class, 'confirmPengajuan'])->name('pengajuan.terima');
 });
 
 // Role -> Kasir
@@ -98,10 +106,29 @@ Route::middleware(['auth', 'role:manajer'])->group(function () {
 
     Route::get('/laporan/pembelian', [LaporanPembelianController::class, 'index'])->name('laporan.pembelian');
     Route::get('/laporan/pembelian/{id}', [LaporanPembelianController::class, 'show'])->name('laporan.pembelian.show');
-
     Route::get('/laporan/stok', [LaporanStokController::class, 'index'])->name('laporan.stok');
-
     Route::get('/laporan/keuangan', [LaporanKeuanganController::class, 'index'])->name('laporan.keuangan');
+});
+
+// Role -> Pelanggan
+Route::middleware(['auth', 'role:pelanggan'])->group(function () {
+    Route::get('/dashboard-pelanggan', [PelangganController::class, 'dashboard'])->name('dashboard.pelanggan');
+
+    Route::get('/membership/register', [MembershipController::class, 'showFormMember'])->name('membership.register');
+    Route::post('/membership/register', [MembershipController::class, 'membership'])->name('membership.proses');
+
+
+    Route::get('/pengajuan', [PengajuanController::class, 'index'])->name('pengajuan.index');
+    Route::post('/pengajuan', [PengajuanController::class, 'store'])->name('pengajuan.store');
+    Route::put('/pengajuan/{id}', [PengajuanController::class, 'update'])->name('pengajuan.update');
+    Route::delete('/pengajuan/{id}', [PengajuanController::class, 'destroy'])->name('pengajuan.destroy');
+    Route::patch('/pengajuan/{id}/toggle-status', [PengajuanController::class, 'toggleStatus'])->name('pengajuan.toggle-status');
+
+    // Jika ingin menambahkan update status, aktifkan route ini
+    // Route::patch('/pengajuan/{id}/status', [PengajuanController::class, 'updateStatus'])->name('pengajuan.updateStatus');
+
+    Route::get('/export/excel', [ExportController::class, 'exportExcel'])->name('export.excel');
+    Route::get('/export/pdf', [ExportController::class, 'exportPDF'])->name('export.pdf');
 });
 
 

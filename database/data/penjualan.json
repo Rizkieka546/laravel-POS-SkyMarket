@@ -3,7 +3,7 @@
         {
             "id": 1,
             "no_faktur": "FTR001",
-            "tgl_faktur": "2025-02-19 00:00:00",
+            "tgl_faktur": "2025-03-19 00:00:00",
             "total_bayar": 1040000,
             "pelanggan_id": 3,
             "user_id": 2,
@@ -15,7 +15,7 @@
         {
             "id": 2,
             "no_faktur": "FTR002",
-            "tgl_faktur": "2025-04-13 00:00:00",
+            "tgl_faktur": "2025-03-13 00:00:00",
             "total_bayar": 749000,
             "pelanggan_id": 2,
             "user_id": 1,
@@ -27,7 +27,7 @@
         {
             "id": 3,
             "no_faktur": "FTR003",
-            "tgl_faktur": "2025-02-09 00:00:00",
+            "tgl_faktur": "2025-03-09 00:00:00",
             "total_bayar": 365000,
             "pelanggan_id": null,
             "user_id": 3,
@@ -39,7 +39,7 @@
         {
             "id": 4,
             "no_faktur": "FTR004",
-            "tgl_faktur": "2025-02-13 00:00:00",
+            "tgl_faktur": "2025-03-13 00:00:00",
             "total_bayar": 1700000,
             "pelanggan_id": 3,
             "user_id": 2,
@@ -51,7 +51,7 @@
         {
             "id": 5,
             "no_faktur": "FTR005",
-            "tgl_faktur": "2025-02-25 00:00:00",
+            "tgl_faktur": "2025-03-25 00:00:00",
             "total_bayar": 455000,
             "pelanggan_id": null,
             "user_id": 3,
@@ -63,7 +63,7 @@
         {
             "id": 6,
             "no_faktur": "FTR006",
-            "tgl_faktur": "2025-11-01 00:00:00",
+            "tgl_faktur": "2025-13-01 00:00:00",
             "total_bayar": 335000,
             "pelanggan_id": null,
             "user_id": 3,
@@ -75,7 +75,7 @@
         {
             "id": 7,
             "no_faktur": "FTR007",
-            "tgl_faktur": "2025-09-20 00:00:00",
+            "tgl_faktur": "2025-03-20 00:00:00",
             "total_bayar": 4700000,
             "pelanggan_id": 6,
             "user_id": 1,
@@ -87,7 +87,7 @@
         {
             "id": 8,
             "no_faktur": "FTR008",
-            "tgl_faktur": "2025-08-17 00:00:00",
+            "tgl_faktur": "2025-03-17 00:00:00",
             "total_bayar": 1080000,
             "pelanggan_id": null,
             "user_id": 3,
@@ -99,7 +99,7 @@
         {
             "id": 9,
             "no_faktur": "FTR009",
-            "tgl_faktur": "2025-05-26 00:00:00",
+            "tgl_faktur": "2025-03-26 00:00:00",
             "total_bayar": 444000,
             "pelanggan_id": 2,
             "user_id": 1,
@@ -111,7 +111,7 @@
         {
             "id": 10,
             "no_faktur": "FTR010",
-            "tgl_faktur": "2025-08-09 00:00:00",
+            "tgl_faktur": "2025-03-09 00:00:00",
             "total_bayar": 708000,
             "pelanggan_id": 1,
             "user_id": 2,
@@ -123,7 +123,7 @@
         {
             "id": 11,
             "no_faktur": "FTR011",
-            "tgl_faktur": "2025-10-29 00:00:00",
+            "tgl_faktur": "2025-13-29 00:00:00",
             "total_bayar": 352000,
             "pelanggan_id": null,
             "user_id": 2,
@@ -135,7 +135,7 @@
         {
             "id": 12,
             "no_faktur": "FTR012",
-            "tgl_faktur": "2025-08-04 00:00:00",
+            "tgl_faktur": "2025-03-04 00:00:00",
             "total_bayar": 250000,
             "pelanggan_id": 4,
             "user_id": 1,
@@ -147,7 +147,7 @@
         {
             "id": 13,
             "no_faktur": "FTR013",
-            "tgl_faktur": "2025-05-08 00:00:00",
+            "tgl_faktur": "2025-03-08 00:00:00",
             "total_bayar": 1305000,
             "pelanggan_id": 1,
             "user_id": 3,
@@ -159,7 +159,7 @@
         {
             "id": 14,
             "no_faktur": "FTR014",
-            "tgl_faktur": "2025-06-15 00:00:00",
+            "tgl_faktur": "2025-03-15 00:00:00",
             "total_bayar": 714000,
             "pelanggan_id": null,
             "user_id": 3,
@@ -171,7 +171,7 @@
         {
             "id": 15,
             "no_faktur": "FTR015",
-            "tgl_faktur": "2025-10-09 00:00:00",
+            "tgl_faktur": "2025-13-09 00:00:00",
             "total_bayar": 82000,
             "pelanggan_id": null,
             "user_id": 3,
@@ -183,7 +183,7 @@
         {
             "id": 16,
             "no_faktur": "FTR016",
-            "tgl_faktur": "2025-06-07 00:00:00",
+            "tgl_faktur": "2025-03-07 00:00:00",
             "total_bayar": 970000,
             "pelanggan_id": null,
             "user_id": 3,
@@ -195,7 +195,7 @@
         {
             "id": 17,
             "no_faktur": "FTR017",
-            "tgl_faktur": "2025-06-11 00:00:00",
+            "tgl_faktur": "2025-03-11 00:00:00",
             "total_bayar": 265000,
             "pelanggan_id": null,
             "user_id": 2,
@@ -207,7 +207,7 @@
         {
             "id": 18,
             "no_faktur": "FTR018",
-            "tgl_faktur": "2025-12-09 00:00:00",
+            "tgl_faktur": "2025-13-09 00:00:00",
             "total_bayar": 1113000,
             "pelanggan_id": null,
             "user_id": 3,
@@ -219,7 +219,7 @@
         {
             "id": 19,
             "no_faktur": "FTR019",
-            "tgl_faktur": "2025-05-14 00:00:00",
+            "tgl_faktur": "2025-03-14 00:00:00",
             "total_bayar": 2875000,
             "pelanggan_id": null,
             "user_id": 3,
@@ -231,7 +231,7 @@
         {
             "id": 20,
             "no_faktur": "FTR020",
-            "tgl_faktur": "2025-07-09 00:00:00",
+            "tgl_faktur": "2025-03-09 00:00:00",
             "total_bayar": 1139000,
             "pelanggan_id": 8,
             "user_id": 1,
@@ -243,7 +243,7 @@
         {
             "id": 21,
             "no_faktur": "FTR021",
-            "tgl_faktur": "2025-10-28 00:00:00",
+            "tgl_faktur": "2025-13-28 00:00:00",
             "total_bayar": 1073000,
             "pelanggan_id": 5,
             "user_id": 1,
@@ -255,7 +255,7 @@
         {
             "id": 22,
             "no_faktur": "FTR022",
-            "tgl_faktur": "2025-02-09 00:00:00",
+            "tgl_faktur": "2025-03-09 00:00:00",
             "total_bayar": 46000,
             "pelanggan_id": 10,
             "user_id": 3,
@@ -267,7 +267,7 @@
         {
             "id": 23,
             "no_faktur": "FTR023",
-            "tgl_faktur": "2025-05-15 00:00:00",
+            "tgl_faktur": "2025-03-15 00:00:00",
             "total_bayar": 40000,
             "pelanggan_id": null,
             "user_id": 2,
@@ -279,7 +279,7 @@
         {
             "id": 24,
             "no_faktur": "FTR024",
-            "tgl_faktur": "2025-06-16 00:00:00",
+            "tgl_faktur": "2025-03-16 00:00:00",
             "total_bayar": 328000,
             "pelanggan_id": null,
             "user_id": 2,
@@ -291,7 +291,7 @@
         {
             "id": 25,
             "no_faktur": "FTR025",
-            "tgl_faktur": "2025-10-23 00:00:00",
+            "tgl_faktur": "2025-13-23 00:00:00",
             "total_bayar": 2445000,
             "pelanggan_id": null,
             "user_id": 4,
@@ -303,7 +303,7 @@
         {
             "id": 26,
             "no_faktur": "FTR026",
-            "tgl_faktur": "2025-12-11 00:00:00",
+            "tgl_faktur": "2025-13-11 00:00:00",
             "total_bayar": 351000,
             "pelanggan_id": null,
             "user_id": 3,
@@ -315,7 +315,7 @@
         {
             "id": 27,
             "no_faktur": "FTR027",
-            "tgl_faktur": "2025-06-21 00:00:00",
+            "tgl_faktur": "2025-03-21 00:00:00",
             "total_bayar": 549000,
             "pelanggan_id": null,
             "user_id": 4,
@@ -327,7 +327,7 @@
         {
             "id": 28,
             "no_faktur": "FTR028",
-            "tgl_faktur": "2025-01-24 00:00:00",
+            "tgl_faktur": "2025-03-24 00:00:00",
             "total_bayar": 330000,
             "pelanggan_id": 8,
             "user_id": 1,
@@ -339,7 +339,7 @@
         {
             "id": 29,
             "no_faktur": "FTR029",
-            "tgl_faktur": "2025-05-06 00:00:00",
+            "tgl_faktur": "2025-03-06 00:00:00",
             "total_bayar": 37000,
             "pelanggan_id": null,
             "user_id": 4,
@@ -351,7 +351,7 @@
         {
             "id": 30,
             "no_faktur": "FTR030",
-            "tgl_faktur": "2025-06-30 00:00:00",
+            "tgl_faktur": "2025-03-30 00:00:00",
             "total_bayar": 2240000,
             "pelanggan_id": null,
             "user_id": 3,
@@ -363,7 +363,7 @@
         {
             "id": 31,
             "no_faktur": "FTR031",
-            "tgl_faktur": "2025-11-23 00:00:00",
+            "tgl_faktur": "2025-13-23 00:00:00",
             "total_bayar": 254000,
             "pelanggan_id": 3,
             "user_id": 1,
@@ -375,7 +375,7 @@
         {
             "id": 32,
             "no_faktur": "FTR032",
-            "tgl_faktur": "2025-02-14 00:00:00",
+            "tgl_faktur": "2025-03-14 00:00:00",
             "total_bayar": 1918000,
             "pelanggan_id": null,
             "user_id": 1,
@@ -387,7 +387,7 @@
         {
             "id": 33,
             "no_faktur": "FTR033",
-            "tgl_faktur": "2025-06-18 00:00:00",
+            "tgl_faktur": "2025-03-18 00:00:00",
             "total_bayar": 735000,
             "pelanggan_id": 6,
             "user_id": 4,
@@ -399,7 +399,7 @@
         {
             "id": 34,
             "no_faktur": "FTR034",
-            "tgl_faktur": "2025-04-21 00:00:00",
+            "tgl_faktur": "2025-03-21 00:00:00",
             "total_bayar": 504000,
             "pelanggan_id": 2,
             "user_id": 1,
@@ -411,7 +411,7 @@
         {
             "id": 35,
             "no_faktur": "FTR035",
-            "tgl_faktur": "2025-08-10 00:00:00",
+            "tgl_faktur": "2025-03-10 00:00:00",
             "total_bayar": 147000,
             "pelanggan_id": 3,
             "user_id": 2,
@@ -423,7 +423,7 @@
         {
             "id": 36,
             "no_faktur": "FTR036",
-            "tgl_faktur": "2025-09-03 00:00:00",
+            "tgl_faktur": "2025-03-03 00:00:00",
             "total_bayar": 332000,
             "pelanggan_id": null,
             "user_id": 2,
@@ -435,7 +435,7 @@
         {
             "id": 37,
             "no_faktur": "FTR037",
-            "tgl_faktur": "2025-11-03 00:00:00",
+            "tgl_faktur": "2025-13-03 00:00:00",
             "total_bayar": 535000,
             "pelanggan_id": null,
             "user_id": 1,
@@ -447,7 +447,7 @@
         {
             "id": 38,
             "no_faktur": "FTR038",
-            "tgl_faktur": "2025-02-05 00:00:00",
+            "tgl_faktur": "2025-03-05 00:00:00",
             "total_bayar": 110000,
             "pelanggan_id": null,
             "user_id": 2,
@@ -459,7 +459,7 @@
         {
             "id": 39,
             "no_faktur": "FTR039",
-            "tgl_faktur": "2025-12-12 00:00:00",
+            "tgl_faktur": "2025-13-12 00:00:00",
             "total_bayar": 470000,
             "pelanggan_id": null,
             "user_id": 4,
@@ -471,7 +471,7 @@
         {
             "id": 40,
             "no_faktur": "FTR040",
-            "tgl_faktur": "2025-01-24 00:00:00",
+            "tgl_faktur": "2025-03-24 00:00:00",
             "total_bayar": 335000,
             "pelanggan_id": null,
             "user_id": 3,
@@ -483,7 +483,7 @@
         {
             "id": 41,
             "no_faktur": "FTR041",
-            "tgl_faktur": "2025-12-11 00:00:00",
+            "tgl_faktur": "2025-13-11 00:00:00",
             "total_bayar": 2185000,
             "pelanggan_id": null,
             "user_id": 4,
@@ -495,7 +495,7 @@
         {
             "id": 42,
             "no_faktur": "FTR042",
-            "tgl_faktur": "2025-09-16 00:00:00",
+            "tgl_faktur": "2025-03-16 00:00:00",
             "total_bayar": 495000,
             "pelanggan_id": null,
             "user_id": 1,
@@ -507,7 +507,7 @@
         {
             "id": 43,
             "no_faktur": "FTR043",
-            "tgl_faktur": "2025-11-07 00:00:00",
+            "tgl_faktur": "2025-13-07 00:00:00",
             "total_bayar": 2426000,
             "pelanggan_id": 8,
             "user_id": 3,
@@ -519,7 +519,7 @@
         {
             "id": 44,
             "no_faktur": "FTR044",
-            "tgl_faktur": "2025-09-30 00:00:00",
+            "tgl_faktur": "2025-03-30 00:00:00",
             "total_bayar": 436000,
             "pelanggan_id": null,
             "user_id": 1,
@@ -531,7 +531,7 @@
         {
             "id": 45,
             "no_faktur": "FTR045",
-            "tgl_faktur": "2025-06-28 00:00:00",
+            "tgl_faktur": "2025-03-28 00:00:00",
             "total_bayar": 1120000,
             "pelanggan_id": null,
             "user_id": 3,
@@ -543,7 +543,7 @@
         {
             "id": 46,
             "no_faktur": "FTR046",
-            "tgl_faktur": "2025-10-28 00:00:00",
+            "tgl_faktur": "2025-13-28 00:00:00",
             "total_bayar": 2674000,
             "pelanggan_id": null,
             "user_id": 1,
@@ -555,7 +555,7 @@
         {
             "id": 47,
             "no_faktur": "FTR047",
-            "tgl_faktur": "2025-08-27 00:00:00",
+            "tgl_faktur": "2025-03-27 00:00:00",
             "total_bayar": 206000,
             "pelanggan_id": null,
             "user_id": 4,
@@ -567,7 +567,7 @@
         {
             "id": 48,
             "no_faktur": "FTR048",
-            "tgl_faktur": "2025-06-04 00:00:00",
+            "tgl_faktur": "2025-03-04 00:00:00",
             "total_bayar": 515000,
             "pelanggan_id": null,
             "user_id": 2,
@@ -579,7 +579,7 @@
         {
             "id": 49,
             "no_faktur": "FTR049",
-            "tgl_faktur": "2025-01-18 00:00:00",
+            "tgl_faktur": "2025-03-18 00:00:00",
             "total_bayar": 1370000,
             "pelanggan_id": null,
             "user_id": 3,
@@ -591,7 +591,7 @@
         {
             "id": 50,
             "no_faktur": "FTR050",
-            "tgl_faktur": "2025-04-06 00:00:00",
+            "tgl_faktur": "2025-03-06 00:00:00",
             "total_bayar": 193000,
             "pelanggan_id": 7,
             "user_id": 1,

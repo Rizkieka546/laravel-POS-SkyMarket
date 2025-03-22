@@ -42,17 +42,25 @@
                         </a>
                     </li>
                     <li class="mb-3">
-                        <a href="{{ route('pembelian.index')}}"
+                        <a href="{{ route('pembelian.index') }}"
                             class="flex items-center px-4 py-2 rounded-lg hover:bg-teal-500">
                             <i class="fa-solid fa-cart-shopping mr-3"></i> Barang Masuk
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('user.index')}}"
+                    <li class="mb-3">
+                        <a href="{{ route('user.index') }}"
                             class="flex items-center px-4 py-2 rounded-lg hover:bg-teal-500">
                             <i class="fa-solid fa-user mr-3"></i> User
                         </a>
                     </li>
+                    <li class="mb-3">
+
+                        <a href="{{ route('pengajuan.admin') }}"
+                            class="flex items-center px-4 py-2 rounded-lg hover:bg-teal-500">
+                            <i class="fa-solid fa-clipboard-list mr-3"></i> Pengajuan
+                        </a>
+                    </li>
+
                 </ul>
             </nav>
         </aside>
@@ -82,6 +90,9 @@
             </main>
         </div>
     </div>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
 </body>
 
 

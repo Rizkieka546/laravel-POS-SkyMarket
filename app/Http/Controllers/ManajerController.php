@@ -8,20 +8,17 @@ use App\Models\Pelanggan;
 use App\Models\Penjualan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ManajerController extends Controller
 {
     public function index()
     {
-        // Penjualan
         $total_transaksi = Penjualan::count();
         $omzet = Penjualan::sum('total_bayar');
         $profit = $omzet * 0.2;
         $barang_terjual = DetailPenjualan::sum('jumlah');
 
-        // Stok Barang
         $barang_hampir_habis = Barang::whereColumn('stok', '<=', 'stok_minimal')->count();
         $barang_tidak_laku = Barang::doesntHave('detailPenjualan')->count();
         $barang_terlaris = Barang::withCount('detailPenjualan')
@@ -29,16 +26,25 @@ class ManajerController extends Controller
             ->limit(5)
             ->get();
 
-        // Statistik Pelanggan
         $pelanggan_baru = Pelanggan::whereMonth('created_at', Carbon::now()->month)->count();
         $pelanggan_aktif = Penjualan::distinct('pelanggan_id')->count();
 
-        // Grafik Penjualan (7 hari terakhir)
         $grafik_penjualan = Penjualan::selectRaw('DATE(tgl_faktur) as tanggal, SUM(total_bayar) as total')
             ->where('tgl_faktur', '>=', Carbon::now()->subDays(7))
             ->groupBy('tanggal')
             ->orderBy('tanggal')
             ->get();
+
+        $data_transaksi = Penjualan::selectRaw('DATE(tgl_faktur) as tanggal, COUNT(*) as jumlah_transaksi, SUM(total_bayar) as total_pendapatan')
+            ->whereBetween('tgl_faktur', [Carbon::now()->startOfMonth(), Carbon::now()])
+            ->groupBy('tanggal')
+            ->orderBy('tanggal')
+            ->get()
+            ->map(function ($item) {
+                $item->tanggal = Carbon::parse($item->tanggal)->format('d-m-Y');
+                return $item;
+            });
+
 
         // Status Pembayaran
         $transaksi_lunas = Penjualan::where('status_pembayaran', 'lunas')->count();
@@ -63,6 +69,7 @@ class ManajerController extends Controller
             'pelanggan_baru',
             'pelanggan_aktif',
             'grafik_penjualan',
+            'data_transaksi',
             'transaksi_lunas',
             'transaksi_tunda',
             'transaksi_gagal',

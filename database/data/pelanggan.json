@@ -7,7 +7,7 @@
             "alamat": "Jl. Merdeka No.1",
             "no_telp": "081234567890",
             "email": "andi@example.com",
-            "membership": "none"
+            "membership": false
         },
         {
             "id": 2,
@@ -16,7 +16,7 @@
             "alamat": "Jl. Sudirman No.2",
             "no_telp": "081298765432",
             "email": "siti@example.com",
-            "membership": "none"
+            "membership": false
         },
         {
             "id": 3,
@@ -25,7 +25,7 @@
             "alamat": "Jl. Thamrin No.3",
             "no_telp": "081212345678",
             "email": "budi@example.com",
-            "membership": "none"
+            "membership": false
         },
         {
             "id": 4,
@@ -34,7 +34,7 @@
             "alamat": "Jl. Diponegoro No.4",
             "no_telp": "081265432198",
             "email": "dewi@example.com",
-            "membership": "none"
+            "membership": false
         },
         {
             "id": 5,
@@ -43,7 +43,7 @@
             "alamat": "Jl. Gajah Mada No.5",
             "no_telp": "081278965432",
             "email": "rudi@example.com",
-            "membership": "none"
+            "membership": false
         },
         {
             "id": 6,
@@ -52,7 +52,7 @@
             "alamat": "Jl. Hayam Wuruk No.6",
             "no_telp": "081232198765",
             "email": "ayu@example.com",
-            "membership": "none"
+            "membership": false
         },
         {
             "id": 7,
@@ -61,7 +61,7 @@
             "alamat": "Jl. Sisingamangaraja No.7",
             "no_telp": "081245678901",
             "email": "dani@example.com",
-            "membership": "none"
+            "membership": false
         },
         {
             "id": 8,
@@ -70,7 +70,7 @@
             "alamat": "Jl. Pattimura No.8",
             "no_telp": "081298712345",
             "email": "mira@example.com",
-            "membership": "none"
+            "membership": false
         },
         {
             "id": 9,
@@ -79,7 +79,7 @@
             "alamat": "Jl. Panglima Polim No.9",
             "no_telp": "081234987654",
             "email": "yusuf@example.com",
-            "membership": "none"
+            "membership": false
         },
         {
             "id": 10,
@@ -88,7 +88,7 @@
             "alamat": "Jl. Imam Bonjol No.10",
             "no_telp": "081256789012",
             "email": "nina@example.com",
-            "membership": "none"
+            "membership": false
         }
     ]
 }

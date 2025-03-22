@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('kode_pelanggan', 50)->unique();
             $table->string('nama', 100);
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->string('alamat', 200);
             $table->string('no_telp', 20);
             $table->string('email', 50)->nullable();
-            $table->enum('membership', ['none', 'silver'])->default('none');
+            $table->boolean('membership')->default(false);
             $table->timestamps();
         });
     }

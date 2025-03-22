@@ -5,28 +5,32 @@
             "name": "Admin",
             "email": "admin@example.com",
             "password": "password",
-            "role": "admin"
+            "role": "admin",
+            "membership": false
         },
         {
             "id": 2,
             "name": "Kasir",
             "email": "kasir@example.com",
             "password": "password",
-            "role": "kasir"
+            "role": "kasir",
+            "membership": false
         },
         {
             "id": 3,
-            "name": "Gudang",
-            "email": "gudang@example.com",
+            "name": "Pelanggan",
+            "email": "pelanggan@example.com",
             "password": "password",
-            "role": "gudang"
+            "role": "pelanggan",
+            "membership": false
         },
         {
             "id": 4,
             "name": "Manajer",
             "email": "manajer@example.com",
             "password": "password",
-            "role": "manajer"
+            "role": "manajer",
+            "membership": false
         }
     ]
 }

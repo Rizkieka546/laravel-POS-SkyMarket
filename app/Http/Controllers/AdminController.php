@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Barang;
 use App\Models\Pemasok;
 use App\Models\Pembelian;
+use App\Models\Pengajuan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -41,5 +42,19 @@ class AdminController extends Controller
             'pembelianBulanan',
             'stokPerKategori'
         ));
+    }
+
+    public function indexPengajuan()
+    {
+        $pengajuan = Pengajuan::all();
+        return view('admin.pengajuan.index', compact('pengajuan'));
+    }
+
+    public function confirmPengajuan($id)
+    {
+        $pengajuan = Pengajuan::findOrFail($id);
+        $pengajuan->update(['status' => 'terpenuhi']);
+
+        return redirect()->route('pengajuan.admin')->with('success', 'Pengajuan berhasil diterima.');
     }
 }

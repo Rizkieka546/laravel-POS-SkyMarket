@@ -13,7 +13,7 @@
         <h2 class="text-2xl font-bold text-center text-gray-700">Daftar Akun</h2>
 
         @if (session('success'))
-        <p class="text-green-500 text-center text-sm">{{ session('success') }}</p>
+            <p class="text-green-500 text-center text-sm">{{ session('success') }}</p>
         @endif
 
         <form class="mt-6" method="POST" action="{{ route('register.process') }}">
@@ -42,16 +42,6 @@
                 <input type="password" id="password_confirmation" name="password_confirmation"
                     class="w-full px-4 py-2 mt-2 border rounded-lg focus:ring focus:ring-indigo-300 focus:outline-none"
                     required>
-            </div>
-            <div class="mb-4">
-                <label class="block text-gray-600 text-sm font-medium">Pilih Role</label>
-                <select name="role"
-                    class="w-full px-4 py-2 mt-2 border rounded-lg focus:ring focus:ring-indigo-300 focus:outline-none"
-                    required>
-                    <option value="admin">Admin</option>
-                    <option value="kasir">Kasir</option>
-                    <option value="manajer">Manajer</option>
-                </select>
             </div>
             <button type="submit"
                 class="w-full px-4 py-2 text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300">

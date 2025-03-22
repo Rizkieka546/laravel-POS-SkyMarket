@@ -111,9 +111,6 @@ class PenjualanController extends Controller
         return view('kasir.penjualan.struk', compact('penjualan', 'uangDiterima', 'kembalian'));
     }
 
-
-
-
     public function show($id)
     {
         $penjualan = Penjualan::with('detailPenjualan.barang')->findOrFail($id);

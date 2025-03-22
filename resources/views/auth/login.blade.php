@@ -19,7 +19,7 @@
                 <input type="email" name="email" id="email" required
                     class="w-full px-4 py-3 mt-2 border border-gray-300 rounded-xl focus:ring focus:ring-indigo-300 focus:outline-none">
                 @error('email')
-                <p class="text-red-500 text-xs">{{ $message }}</p>
+                    <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
             <div class="mb-6 relative">
@@ -27,13 +27,17 @@
                 <input type="password" name="password" id="password" required
                     class="w-full px-4 py-3 mt-2 border border-gray-300 rounded-xl focus:ring focus:ring-indigo-300 focus:outline-none">
                 @error('password')
-                <p class="text-red-500 text-xs">{{ $message }}</p>
+                    <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
             <button type="submit"
                 class="w-full px-4 py-3 text-white bg-teal-600 rounded-xl hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 shadow-lg transform transition duration-300 hover:scale-105">
                 Masuk
             </button>
+            <p class="mt-4 text-center text-gray-600 text-sm">
+                Belum punya akun? <a href="{{ route('register') }}"
+                    class="text-teal-600 font-semibold hover:underline">Daftar</a>
+            </p>
         </form>
 
     </div>

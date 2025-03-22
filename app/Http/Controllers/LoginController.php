@@ -14,25 +14,19 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        // Validasi input
         $request->validate([
             'email' => 'required|email',
             'password' => 'required|string|min:6',
         ]);
 
-        // Ambil data yang diinputkan
         $credentials = $request->only('email', 'password');
 
-        // Coba autentikasi pengguna
         if (Auth::attempt($credentials)) {
-            // Ambil user yang sedang login
             $user = Auth::user();
 
-            // Redirect berdasarkan role
             return $this->authenticated($request, $user);
         }
 
-        // Jika login gagal, kembalikan ke halaman login dengan pesan error
         return back()->withErrors(['email' => 'Email atau password salah.'])->withInput();
     }
 
@@ -44,6 +38,8 @@ class LoginController extends Controller
             return redirect('/dashboard-kasir');
         } elseif ($user->role === 'manajer') {
             return redirect('/dashboard-manajer');
+        } elseif ($user->role === 'pelanggan') {
+            return redirect('/dashboard-pelanggan');
         }
 
         return redirect('/home');
