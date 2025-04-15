@@ -17,11 +17,11 @@ class DatabaseSeeder extends Seeder
             PelangganSeeder::class,
             PemasokSeeder::class,
             KategoriSeeder::class,
-            BarangSeeder::class,
-            PembelianSeeder::class,
-            DetailPembelianSeeder::class,
-            PenjualanSeeder::class,
-            DetailPenjualanSeeder::class,
+            // BarangSeeder::class,
+            // PembelianSeeder::class,
+            // DetailPembelianSeeder::class,
+            // PenjualanSeeder::class,
+            // DetailPenjualanSeeder::class,
         ]);
     }
 }

@@ -8,41 +8,20 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class PembelianExport implements FromCollection, WithHeadings
 {
-    protected $tanggal_mulai;
-    protected $tanggal_selesai;
-    protected $pemasok_id;
-
-    public function __construct($tanggal_mulai, $tanggal_selesai, $pemasok_id)
-    {
-        $this->tanggal_mulai = $tanggal_mulai;
-        $this->tanggal_selesai = $tanggal_selesai;
-        $this->pemasok_id = $pemasok_id;
-    }
-
     public function collection()
     {
-        $query = Pembelian::with('pemasok');
-
-        if ($this->tanggal_mulai && $this->tanggal_selesai) {
-            $query->whereBetween('tanggal_masuk', [$this->tanggal_mulai, $this->tanggal_selesai]);
-        }
-
-        if ($this->pemasok_id) {
-            $query->where('pemasok_id', $this->pemasok_id);
-        }
-
-        return $query->get()->map(function ($pembelian) {
+        return Pembelian::with('pemasok')->get()->map(function ($item) {
             return [
-                $pembelian->kode_masuk,
-                $pembelian->tanggal_masuk,
-                $pembelian->pemasok->nama ?? '-',
-                $pembelian->total_bayar,
+                'kode_masuk' => $item->kode_masuk,
+                'pemasok' => $item->pemasok->nama_pemasok ?? '',
+                'total' => $item->total,
+                'tanggal_masuk' => $item->tanggal_masuk,
             ];
         });
     }
 
     public function headings(): array
     {
-        return ["Kode Masuk", "Tanggal Masuk", "Pemasok", "Total Bayar"];
+        return ['Kode Masuk', 'Pemasok', 'Total', 'Tanggal Masuk'];
     }
 }

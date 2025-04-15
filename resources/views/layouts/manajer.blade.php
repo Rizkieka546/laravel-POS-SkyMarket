@@ -35,10 +35,13 @@
                     <i class="fas fa-chart-line"></i> <span>Laporan Keuangan</span>
                 </a>
             </nav>
-            <a href="#"
+            <form action="{{ route('logout') }}" method="POST"
                 class="mt-auto flex items-center gap-3 px-4 py-3 bg-red-500 hover:bg-red-600 rounded-lg transition text-center">
-                <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
-            </a>
+                @csrf
+                <button type="submit">
+                    <i class="fa-solid fa-sign-out-alt mr-2"></i> Logout
+                </button>
+            </form>
         </aside>
 
         <!-- Main Content -->

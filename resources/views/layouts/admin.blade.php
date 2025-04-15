@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="//unpkg.com/alpinejs" defer></script>
+
 </head>
 
 <body class="bg-gray-100 h-screen overflow-hidden">
@@ -88,10 +90,12 @@
             <main class="flex-1 p-6 overflow-y-auto mt-[64px]">
                 @yield('content')
             </main>
+
         </div>
     </div>
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 

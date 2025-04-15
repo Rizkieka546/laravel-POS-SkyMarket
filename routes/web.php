@@ -20,6 +20,7 @@ use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ScanController;
 use App\Http\Controllers\UserController;
 use App\Models\Pelanggan;
 
@@ -63,6 +64,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/pembelian', [PembelianController::class, 'store'])->name('pembelian.store');
     Route::get('/pembelian/{id}', [PembelianController::class, 'show'])->name('pembelian.show');
 
+    Route::get('/pembelian/export-excel', [PembelianController::class, 'exportExcel'])->name('pembelian.export.excel');
+    Route::get('/pembelian/export-pdf', [PembelianController::class, 'exportPdf'])->name('pembelian.export.pdf');
+
+
     // Pemasok
     Route::get('/pemasok', [PemasokController::class, 'index'])->name('pemasok.index');
     Route::get('/pemasok/create', [PemasokController::class, 'create'])->name('pemasok.create');
@@ -81,7 +86,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
     Route::get('/pengajuan/admin', [AdminController::class, 'indexPengajuan'])->name('pengajuan.admin');
-    Route::put('/pengajuan/terima/{id}', [AdminController::class, 'confirmPengajuan'])->name('pengajuan.terima');
+    Route::get('/pengajuan/create', [AdminController::class, 'createPengajuan'])->name('pengajuan.admin.create');
+    Route::post('/pengajuan/store', [AdminController::class, 'storePengajuan'])->name('pengajuan.admin.store');
+    Route::get('/pengajuan/edit/{id}', [AdminController::class, 'editPengajuan'])->name('pengajuan.admin.edit');
+    Route::put('/pengajuan/update/{id}', [AdminController::class, 'updatePengajuan'])->name('pengajuan.admin.update');
+
+    Route::put('/pengajuan/{id}/update-status', [AdminController::class, 'updateStatus'])->name('pengajuan.updateStatus');
 });
 
 // Role -> Kasir
@@ -91,10 +101,18 @@ Route::middleware(['auth', 'role:kasir'])->group(function () {
     // Penjualan
     Route::get('/penjualan', [PenjualanController::class, 'index'])->name('penjualan.index');
     Route::get('/penjualan/create', [PenjualanController::class, 'create'])->name('penjualan.create');
+    Route::get('/penjualan/scan', [PenjualanController::class, 'scan'])->name('penjualan.scan');
     Route::post('/penjualan', [PenjualanController::class, 'store'])->name('penjualan.store');
     Route::get('/penjualan/{id}', [PenjualanController::class, 'show'])->name('penjualan.show');
     Route::get('/penjualan/{id}/pembayaran', [PenjualanController::class, 'pembayaran'])->name('penjualan.pembayaran');
     Route::post('/penjualan/{id}/proses-pembayaran', [PenjualanController::class, 'prosesPembayaran'])->name('penjualan.prosesPembayaran');
+
+
+    Route::get('/transaksi', [ScanController::class, 'create'])->name('transaksi.create');
+    Route::post('/transaksi/tambah-barang', [ScanController::class, 'tambahBarang'])->name('transaksi.tambahBarang');
+    Route::post('/transaksi/simpan', [ScanController::class, 'simpan'])->name('transaksi.simpan');
+    Route::get('/transaksi/pembayaran/{id}', [ScanController::class, 'pembayaran'])->name('transaksi.pembayaran');
+    Route::post('/transaksi/pembayaran/{id}', [ScanController::class, 'prosesPembayaran'])->name('transaksi.prosesPembayaran');
 });
 
 // Role -> Manajer
@@ -134,4 +152,9 @@ Route::middleware(['auth', 'role:pelanggan'])->group(function () {
 
 Route::get('/unauthorized', function () {
     return view('errors.unauthorized');
+});
+
+Route::get('/set-success-notification', function () {
+    session()->flash('success', 'Tindakan berhasil dilakukan!');
+    return back();
 });

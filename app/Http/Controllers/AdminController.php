@@ -46,15 +46,67 @@ class AdminController extends Controller
 
     public function indexPengajuan()
     {
-        $pengajuan = Pengajuan::all();
+        $pengajuan = Pengajuan::orderByRaw("FIELD(status, 'pending') DESC")->paginate(5);
         return view('admin.pengajuan.index', compact('pengajuan'));
     }
 
-    public function confirmPengajuan($id)
+    public function createPengajuan()
+    {
+        return view('admin.pengajuan.create');
+    }
+
+
+    public function storePengajuan(Request $request)
+    {
+        $request->validate([
+            'nama_barang' => 'required|string|max:255',
+            'tanggal_pengajuan' => 'required|date',
+            'qty' => 'required|integer|min:1',
+        ]);
+
+        Pengajuan::create([
+            'nama_pengaju' => auth()->user()->name,
+            'nama_barang' => $request->nama_barang,
+            'tanggal_pengajuan' => $request->tanggal_pengajuan,
+            'qty' => $request->qty,
+            'status' => 'pending',
+        ]);
+
+        return redirect()->route('pengajuan.admin')->with('success', 'Pengajuan berhasil ditambahkan.');
+    }
+
+    public function editPengajuan($id)
     {
         $pengajuan = Pengajuan::findOrFail($id);
-        $pengajuan->update(['status' => 'terpenuhi']);
+        return view('admin.pengajuan.edit', compact('pengajuan'));
+    }
 
-        return redirect()->route('pengajuan.admin')->with('success', 'Pengajuan berhasil diterima.');
+    public function updatePengajuan(Request $request, $id)
+    {
+        $request->validate([
+            'nama_barang' => 'required|string|max:255',
+            'tanggal_pengajuan' => 'required|date',
+            'qty' => 'required|integer|min:1',
+        ]);
+
+        $pengajuan = Pengajuan::findOrFail($id);
+        $pengajuan->update($request->all());
+
+        return redirect()->route('pengajuan.admin')->with('success', 'Pengajuan berhasil diperbarui.');
+    }
+
+
+    public function updateStatus(Request $request, $id)
+    {
+        $pengajuan = Pengajuan::findOrFail($id);
+
+        // Cek apakah status yang dipilih 'terpenuhi' atau 'batal'
+        $newStatus = $pengajuan->status == 'terpenuhi' ? 'batal' : 'terpenuhi';
+
+        // Update status pengajuan
+        $pengajuan->status = $newStatus;
+        $pengajuan->save();
+
+        return redirect()->route('pengajuan.admin')->with('success', 'Status pengajuan berhasil diperbarui.');
     }
 }

@@ -2,44 +2,74 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Barang;
 use App\Models\Penjualan;
 use App\Models\DetailPenjualan;
-use App\Models\Barang;
-use App\Models\Pelanggan;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
+use DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Mike42\Escpos\Printer;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
+use Mike42\Escpos\Printer;
 
-class PenjualanController extends Controller
+class ScanController extends Controller
 {
-    public function index()
-    {
-        $penjualans = Penjualan::with('detailPenjualan.barang')->orderBy('created_at', 'desc')->paginate(10);
-        return view('kasir.penjualan.index', compact('penjualans'));
-    }
-
     public function create()
     {
-        $pelanggans = Pelanggan::all();
-        $barangs = Barang::where('stok', '>', 1)->get();
-
-        return view('kasir.penjualan.create', compact('pelanggans', 'barangs'));
+        $keranjang = Session::get('keranjang', []);
+        return view('kasir.transaksi.create', compact('keranjang'));
     }
 
-    public function store(Request $request)
+    public function tambahBarang(Request $request)
     {
         $request->validate([
-            'keranjang_data' => 'required',
+            'kode_barang' => 'required|string',
+            'jumlah' => 'required|integer|min:1'
         ]);
 
-        $keranjang = json_decode($request->keranjang_data, true);
-        if (!$keranjang) {
-            return back()->with('error', 'Keranjang tidak boleh kosong.');
+        $barang = Barang::where('kode_barang', $request->kode_barang)->first();
+
+        if (!$barang) {
+            return redirect()->back()->with('error', 'Barang tidak ditemukan!');
+        }
+
+        $keranjang = Session::get('keranjang', []);
+        $key = $barang->id;
+
+        if (isset($keranjang[$key])) {
+            $keranjang[$key]['jumlah'] += $request->jumlah;
+            $keranjang[$key]['sub_total'] = $keranjang[$key]['jumlah'] * $barang->harga_jual;
+        } else {
+            $keranjang[$key] = [
+                'id' => $barang->id,
+                'kode_barang' => $barang->kode_barang,
+                'nama_barang' => $barang->nama_barang,
+                'harga_jual' => $barang->harga_jual,
+                'jumlah' => $request->jumlah,
+                'sub_total' => $barang->harga_jual * $request->jumlah
+            ];
+        }
+
+        Session::put('keranjang', $keranjang);
+
+        return redirect()->back()->with('success', 'Barang ditambahkan ke keranjang!');
+    }
+
+    public function simpan(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id'
+        ]);
+
+        $keranjang = Session::get('keranjang', []);
+        if (empty($keranjang)) {
+            return redirect()->back()->with('error', 'Keranjang masih kosong!');
         }
 
         DB::beginTransaction();
+
         try {
             $noFaktur = 'INV-' . now()->format('Ymd') . '-' . str_pad(Penjualan::count() + 1, 4, '0', STR_PAD_LEFT);
 
@@ -71,28 +101,27 @@ class PenjualanController extends Controller
             }
 
             $penjualan->update(['total_bayar' => $totalHarga]);
-
+            Session::forget('keranjang');
             DB::commit();
 
-            return redirect()->route('penjualan.pembayaran', ['id' => $penjualan->id]);
+            return redirect()->route('transaksi.pembayaran', ['id' => $penjualan->id])
+                ->with('success', 'Transaksi berhasil disimpan!');
         } catch (\Exception $e) {
-            DB::rollback();
-            return back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Gagal menyimpan transaksi: ' . $e->getMessage());
         }
     }
-
 
     public function pembayaran($id)
     {
         $penjualan = Penjualan::with('detailPenjualan.barang')->findOrFail($id);
-        return view('kasir.penjualan.pembayaran', compact('penjualan'));
+        return view('kasir.transaksi.pembayaran', compact('penjualan'));
     }
-
 
     public function prosesPembayaran(Request $request, $id)
     {
         $request->validate([
-            'uang_diterima' => 'required|numeric|min:0',
+            'uang_diterima' => 'required|numeric|min:1',
         ]);
 
         $penjualan = Penjualan::with('detailPenjualan.barang')->findOrFail($id);
@@ -147,15 +176,9 @@ class PenjualanController extends Controller
 
             $printer->close();
 
-            return redirect()->route('penjualan.index')->with('success', 'Pembayaran berhasil & struk dicetak.');
+            return redirect()->route('transaksi.create')->with('success', 'Pembayaran berhasil dan struk dicetak.');
         } catch (\Exception $e) {
             return back()->with('error', 'Gagal mencetak struk: ' . $e->getMessage());
         }
-    }
-
-    public function show($id)
-    {
-        $penjualan = Penjualan::with('detailPenjualan.barang')->findOrFail($id);
-        return view('kasir.penjualan.show', compact('penjualan'));
     }
 }

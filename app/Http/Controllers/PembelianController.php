@@ -10,12 +10,15 @@ use App\Models\Kategori;
 use App\Models\Pemasok;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Exports\PembelianExport;
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class PembelianController extends Controller
 {
     public function index()
     {
-        $pembelian = Pembelian::with('pemasok', 'user')->orderBy('tanggal_masuk', 'desc')->get();
+        $pembelian = Pembelian::with('pemasok', 'user')->orderBy('tanggal_masuk', 'desc')->paginate(10);
         return view('admin.pembelian.index', compact('pembelian'));
     }
 
@@ -99,5 +102,18 @@ class PembelianController extends Controller
     {
         $pembelian = Pembelian::with('pemasok', 'user', 'detailPembelian.barang')->findOrFail($id);
         return view('admin.pembelian.show', compact('pembelian'));
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new PembelianExport, 'pembelian.xlsx');
+    }
+
+    public function exportPdf()
+    {
+        $pembelian = Pembelian::with('pemasok')->get();
+
+        $pdf = PDF::loadView('admin.pembelian.export_pdf', compact('pembelian'));
+        return $pdf->download('pembelian.pdf');
     }
 }

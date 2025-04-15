@@ -12,7 +12,7 @@
                         <label class="block mb-2">Kategori</label>
                         <select name="kategori_id" class="w-full p-2 border rounded mb-4">
                             @foreach ($kategoris as $kategori)
-                                <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
+                                <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -22,19 +22,13 @@
                     </div>
                     <div>
                         <label class="block mb-2">Satuan</label>
-                        <input type="text" name="satuan" class="w-full p-2 border rounded mb-4">
-                    </div>
-                    <div>
-                        <label class="block mb-2">Harga Beli</label>
-                        <input type="number" name="harga_beli" class="w-full p-2 border rounded mb-4">
-                    </div>
-                    <div>
-                        <label class="block mb-2">Harga Jual</label>
-                        <input type="number" name="harga_jual" class="w-full p-2 border rounded mb-4">
-                    </div>
-                    <div>
-                        <label class="block mb-2">Stok</label>
-                        <input type="number" name="stok" class="w-full p-2 border rounded mb-4">
+                        <select name="satuan" class="w-full p-2 border rounded mb-4" required>
+                            <option value="">Pilih Satuan</option>
+                            <option value="pcs">Pcs</option>
+                            <option value="kg">Kg</option>
+                            <option value="liter">Liter</option>
+                            <option value="pack">Pack</option>
+                        </select>
                     </div>
                     <div>
                         <label class="block mb-2">Stok Minimal</label>

@@ -8,6 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body class="bg-gray-100 flex">
@@ -25,6 +28,9 @@
             </a>
             <a href="{{ route('penjualan.create') }}" class="flex items-center px-4 py-3 rounded-lg hover:bg-teal-500">
                 <i class="fas fa-cash-register mr-3"></i> <span>Kasir</span>
+            </a>
+            <a href="{{ route('transaksi.create') }}" class="flex items-center px-4 py-3 rounded-lg hover:bg-teal-500">
+                <i class="fas fa-cash-register mr-3"></i> <span>Scan</span>
             </a>
         </nav>
     </aside>

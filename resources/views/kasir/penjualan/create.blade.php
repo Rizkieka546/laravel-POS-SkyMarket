@@ -1,113 +1,131 @@
-@extends('layouts.kasir')
+@extends('layouts.app')
 
 @section('content')
+    <div class="container mx-auto px-4 py-6">
+        <h1 class="text-2xl font-bold mb-4">Scan Barang (Barcode)</h1>
 
-<!-- Content -->
-<main class="flex-1 flex p-6 gap-6 overflow-hidden">
-    <!-- Produk List -->
-    <div class="flex-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 overflow-x-auto h-[calc(100vh-80px)] pr-2">
-        @foreach ($barangs as $barang)
-        <button
-            onclick="tambahKeKeranjang({{ $barang->id }}, '{{ $barang->nama_barang }}', {{ $barang->harga_jual }}, {{ $barang->stok }})"
-            class="p-4 bg-white shadow-md rounded-lg hover:shadow-xl transform transition hover:scale-105 flex flex-col justify-between items-center h-56 w-full">
-            <img src="{{ asset($barang->gambar ? 'storage/barang/' . $barang->gambar : 'images/default.jpg') }}"
-                alt="{{ $barang->nama_barang }}" class="w-full h-32 object-cover rounded-md">
-            <div class="text-center">
-                <h2 class="text-lg font-semibold text-gray-800 truncate w-40">{{ $barang->nama_barang }}</h2>
+        {{-- Input Barcode --}}
+        <div class="w-full mb-6">
+            <label for="scan-barcode" class="block font-semibold text-gray-700 mb-2">Scan Barcode</label>
+            <input type="text" id="scan-barcode" class="border p-2 w-full rounded shadow" placeholder="Scan barcode di sini"
+                autofocus>
+        </div>
 
-                <p class="text-teal-600 font-bold">Rp {{ number_format($barang->harga_jual, 0, ',', '.') }}</p>
-                <span class="text-sm text-gray-600">Stok: {{ $barang->stok }}</span>
-            </div>
-        </button>
-        @endforeach
-    </div>
-
-    <!-- Keranjang -->
-    <div class="w-80 bg-white p-6 border-l shadow-md rounded-lg h-[calc(100vh-80px)] overflow-hidden flex flex-col">
-        <h2 class="text-xl font-bold mb-4 text-center text-gray-800">Keranjang</h2>
-        <form action="{{ route('penjualan.store') }}" method="POST" class="flex-1 flex flex-col">
+        {{-- Keranjang --}}
+        <form id="form-pembelian" method="POST" action="{{ route('pembelian.store') }}">
             @csrf
-            <input type="hidden" name="keranjang_data" id="keranjang_data">
-            <div id="order-items" class="overflow-auto flex-1 space-y-3 max-h-60 border-b pb-4"></div>
-            <div class="pt-4 mt-4">
-                <div class="flex justify-between text-lg font-medium">
-                    <span>Subtotal</span>
-                    <span id="subtotal">Rp 0</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {{-- Daftar Belanja --}}
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="text-lg font-semibold mb-2">Daftar Barang</h2>
+                    <table class="w-full text-sm text-left">
+                        <thead>
+                            <tr class="border-b">
+                                <th>Nama</th>
+                                <th>Harga</th>
+                                <th>Qty</th>
+                                <th>Subtotal</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="keranjang-list">
+                            {{-- Diisi lewat JavaScript --}}
+                        </tbody>
+                    </table>
                 </div>
-                <div class="flex justify-between text-xl font-bold mt-2">
-                    <span>Total</span>
-                    <span id="total">Rp 0</span>
+
+                {{-- Ringkasan & Bayar --}}
+                <div class="bg-white p-4 rounded shadow">
+                    <h2 class="text-lg font-semibold mb-2">Total</h2>
+                    <p class="text-xl font-bold mb-4" id="total">Rp 0</p>
+
+                    {{-- Field tersembunyi untuk dikirim ke backend --}}
+                    <input type="hidden" name="items" id="input-items">
+
+                    <button type="submit"
+                        class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded w-full">
+                        Bayar Sekarang
+                    </button>
                 </div>
-                <button type="submit"
-                    class="mt-4 bg-teal-500 text-white w-full py-3 rounded-lg hover:bg-teal-600 transition">
-                    Bayar Sekarang
-                </button>
             </div>
         </form>
     </div>
-</main>
 
-<script>
-const keranjang = {};
+    {{-- SweetAlert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-function tambahKeKeranjang(id, nama, harga, stok) {
-    if (!keranjang[id]) {
-        if (stok <= 0) return Swal.fire("Stok Habis!", "Barang ini tidak tersedia saat ini.", "error");
-        keranjang[id] = {
-            jumlah: 1,
-            harga,
-            nama,
-            stok
-        };
-    } else if (keranjang[id].jumlah < stok) {
-        keranjang[id].jumlah++;
-    } else {
-        return Swal.fire("Stok Tidak Cukup!", `Stok tersisa hanya ${stok} item.`, "warning");
-    }
-    updateKeranjang();
-}
+    <script>
+        const daftarBarang = @json($barangs); // Harus ada 'kode_barang', 'nama_barang', 'harga_jual', 'id'
+        const keranjang = [];
 
-function kurangiItem(id) {
-    if (keranjang[id]) {
-        keranjang[id].jumlah > 1 ? keranjang[id].jumlah-- : delete keranjang[id];
-        updateKeranjang();
-    }
-}
+        function updateKeranjangUI() {
+            const tbody = document.getElementById('keranjang-list');
+            tbody.innerHTML = '';
+            let total = 0;
 
-function updateKeranjang() {
-    const orderItems = document.getElementById("order-items");
-    let subtotal = 0;
-    orderItems.innerHTML = Object.entries(keranjang).map(([id, item]) => {
-        subtotal += item.harga * item.jumlah;
-        return `
-            <div class='flex justify-between items-center p-3 bg-gray-100 rounded-lg shadow'>
-                <div>
-                    <h3 class='text-lg font-semibold text-gray-800 truncate w-32'>${item.nama}</h3>
+            keranjang.forEach((item, index) => {
+                const subtotal = item.qty * item.harga;
+                total += subtotal;
 
-                    <p class='text-teal-600 font-bold'>Rp ${item.harga.toLocaleString()}</p>
-                    <p class='text-sm text-gray-600'>Stok: ${item.stok}</p>
-                </div>
-                <div class='flex items-center'>
-                    <button onclick='kurangiItem(${id})' class='px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600'>-</button>
-                    <span class='mx-3 text-lg font-semibold'>${item.jumlah}</span>
-                    <button onclick='tambahKeKeranjang(${id}, "${item.nama}", ${item.harga}, ${item.stok})' class='px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600'>+</button>
-                </div>
-            </div>
-        `;
-    }).join("");
-    document.getElementById("subtotal").innerText = document.getElementById("total").innerText =
-        `Rp ${subtotal.toLocaleString()}`;
-    document.getElementById("keranjang_data").value = JSON.stringify(keranjang);
-}
-</script>
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                <td>${item.nama}</td>
+                <td>Rp ${item.harga.toLocaleString()}</td>
+                <td>${item.qty}</td>
+                <td>Rp ${(subtotal).toLocaleString()}</td>
+                <td><button type="button" onclick="hapusItem(${index})" class="text-red-500">Hapus</button></td>
+            `;
+                tbody.appendChild(row);
+            });
 
-<style>
-.truncate {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    display: block;
-    max-width: 100%;
-}
-</style>
+            document.getElementById('total').innerText = `Rp ${total.toLocaleString()}`;
+            document.getElementById('input-items').value = JSON.stringify(keranjang);
+        }
+
+        function tambahKeKeranjang(id, nama, harga) {
+            const index = keranjang.findIndex(item => item.id === id);
+
+            if (index !== -1) {
+                keranjang[index].qty += 1;
+            } else {
+                keranjang.push({
+                    id,
+                    nama,
+                    harga,
+                    qty: 1
+                });
+            }
+
+            updateKeranjangUI();
+
+            Swal.fire({
+                title: 'Berhasil!',
+                text: `${nama} ditambahkan ke keranjang.`,
+                icon: 'success',
+                timer: 1000,
+                showConfirmButton: false
+            });
+        }
+
+        function hapusItem(index) {
+            keranjang.splice(index, 1);
+            updateKeranjangUI();
+        }
+
+        document.getElementById('scan-barcode').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const kode = this.value.trim();
+                this.value = '';
+
+                const barang = daftarBarang.find(b => b.kode_barang === kode);
+
+                if (barang) {
+                    tambahKeKeranjang(barang.id, barang.nama_barang, barang.harga_jual);
+                } else {
+                    Swal.fire("Barang Tidak Ditemukan", `Kode "${kode}" tidak terdaftar.`, "error");
+                }
+            }
+        });
+    </script>
 @endsection

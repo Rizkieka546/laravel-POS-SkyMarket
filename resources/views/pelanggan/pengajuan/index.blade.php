@@ -3,7 +3,7 @@
 @section('content')
     <div class="bg-white p-6 rounded-lg shadow-md">
         <h1 class="text-2xl font-semibold text-gray-800 mb-4">Daftar Pengajuan Barang</h1>
-
+        <x-notification />
         <!-- Tombol Tambah Pengajuan -->
         <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded mb-4 transition duration-300"
             data-modal="tambahPengajuanModal">Tambah Pengajuan</button>
