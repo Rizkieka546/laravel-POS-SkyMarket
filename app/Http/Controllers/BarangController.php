@@ -12,12 +12,16 @@ class BarangController extends Controller
 {
     /**
      * Menampilkan daftar barang
-     * Mengambil semua barang dengan relasi kategori dan user
+     * Fungsi ini mengambil semua barang yang ada di database, 
+     * termasuk relasi dengan kategori dan user yang menambahkan barang.
+     * Kemudian menampilkan halaman daftar barang dengan data barang yang telah dipaginate.
+     *
+     * @return \Illuminate\View\View
      */
     public function index()
     {
         // Mengambil data barang dengan relasi kategori dan user
-        $barangs = Barang::with('kategori', 'user')->latest()->paginate(1);
+        $barangs = Barang::with('kategori', 'user')->latest()->paginate(10);
 
         // Mengembalikan tampilan daftar barang
         return view('admin.barang.index', compact('barangs'));
@@ -25,7 +29,10 @@ class BarangController extends Controller
 
     /**
      * Menampilkan form untuk menambahkan barang baru
-     * Mengambil semua kategori untuk ditampilkan dalam form
+     * Fungsi ini mengambil semua kategori yang tersedia untuk ditampilkan pada form 
+     * tambah barang, agar pengguna dapat memilih kategori saat menambahkan barang baru.
+     *
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -38,7 +45,12 @@ class BarangController extends Controller
 
     /**
      * Menyimpan barang baru ke database
-     * Melakukan validasi data dan menyimpan barang ke tabel 'barang'
+     * Fungsi ini menerima data dari form tambah barang, 
+     * melakukan validasi terhadap data yang diberikan, dan 
+     * menyimpan data barang baru ke dalam tabel 'barang' di database.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -77,7 +89,11 @@ class BarangController extends Controller
 
     /**
      * Menampilkan form untuk mengedit barang yang sudah ada
-     * Mengambil data barang dan kategori untuk ditampilkan di form
+     * Fungsi ini mengambil data barang berdasarkan ID, 
+     * dan semua kategori yang ada untuk ditampilkan di form edit barang.
+     *
+     * @param int $id
+     * @return \Illuminate\View\View
      */
     public function edit($id)
     {
@@ -93,7 +109,12 @@ class BarangController extends Controller
 
     /**
      * Memperbarui data barang di database
-     * Melakukan validasi dan update data barang berdasarkan ID
+     * Fungsi ini menerima data dari form edit barang, 
+     * melakukan validasi, dan memperbarui data barang yang ada di database.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -101,7 +122,7 @@ class BarangController extends Controller
         $request->validate([
             'nama_barang' => 'required|string|max:255',   // Validasi nama_barang
             'kategori_id' => 'required|exists:kategori,id', // Validasi kategori_id harus ada di tabel kategori
-            'harga_jual' => 'required|numeric|min:1',     // Validasi harga_jual harus numerik dan lebih dari 0
+            'harga_jual' => 'required|numeric|min:0',     // Validasi harga_jual harus numerik dan lebih dari 0
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi gambar jika ada
         ]);
 
@@ -129,7 +150,11 @@ class BarangController extends Controller
 
     /**
      * Menghapus barang dari database
-     * Menghapus gambar terkait dan data barang berdasarkan ID
+     * Fungsi ini menghapus barang berdasarkan ID dan 
+     * juga menghapus gambar terkait yang disimpan di penyimpanan.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {

@@ -14,12 +14,28 @@ use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 
 class PenjualanController extends Controller
 {
+    /**
+     * Menampilkan daftar penjualan.
+     *
+     * Fungsi ini mengambil data penjualan yang telah dilakukan dan menampilkannya di halaman index penjualan.
+     * Penjualan yang ditampilkan termasuk detail barang yang dibeli.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         $penjualans = Penjualan::with('detailPenjualan.barang')->orderBy('created_at', 'desc')->paginate(10);
         return view('kasir.penjualan.index', compact('penjualans'));
     }
 
+    /**
+     * Menampilkan halaman form untuk membuat penjualan baru.
+     *
+     * Fungsi ini mengambil data pelanggan dan barang yang tersedia (dengan stok lebih dari 1) untuk ditampilkan
+     * di halaman pembuatan penjualan.
+     *
+     * @return \Illuminate\View\View
+     */
     public function create()
     {
         $pelanggans = Pelanggan::all();
@@ -28,6 +44,15 @@ class PenjualanController extends Controller
         return view('kasir.penjualan.create', compact('pelanggans', 'barangs'));
     }
 
+    /**
+     * Menyimpan data penjualan baru.
+     *
+     * Fungsi ini memvalidasi data keranjang yang diterima, menyimpan penjualan ke dalam database, dan mengurangi stok barang
+     * yang terjual. Jika terjadi kesalahan, perubahan dibatalkan dan transaksi dibatalkan.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -81,14 +106,30 @@ class PenjualanController extends Controller
         }
     }
 
-
+    /**
+     * Menampilkan halaman pembayaran untuk penjualan tertentu.
+     *
+     * Fungsi ini mengambil data penjualan berdasarkan ID dan menampilkan halaman pembayaran untuk penjualan tersebut.
+     *
+     * @param int $id
+     * @return \Illuminate\View\View
+     */
     public function pembayaran($id)
     {
         $penjualan = Penjualan::with('detailPenjualan.barang')->findOrFail($id);
         return view('kasir.penjualan.pembayaran', compact('penjualan'));
     }
 
-
+    /**
+     * Memproses pembayaran penjualan.
+     *
+     * Fungsi ini memproses pembayaran berdasarkan uang yang diterima dari pelanggan dan menghitung kembalian.
+     * Jika pembayaran berhasil, status pembayaran diperbarui dan struk dicetak.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function prosesPembayaran(Request $request, $id)
     {
         $request->validate([
@@ -110,6 +151,7 @@ class PenjualanController extends Controller
         ]);
 
         try {
+            // Mencetak struk pembayaran menggunakan printer POS
             $connector = new WindowsPrintConnector("POS-58");
             $printer = new Printer($connector);
 
@@ -153,6 +195,14 @@ class PenjualanController extends Controller
         }
     }
 
+    /**
+     * Menampilkan detail penjualan berdasarkan ID.
+     *
+     * Fungsi ini menampilkan detail lengkap dari penjualan tertentu, termasuk barang yang dibeli.
+     *
+     * @param int $id
+     * @return \Illuminate\View\View
+     */
     public function show($id)
     {
         $penjualan = Penjualan::with('detailPenjualan.barang')->findOrFail($id);

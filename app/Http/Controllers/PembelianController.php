@@ -16,12 +16,27 @@ use PDF;
 
 class PembelianController extends Controller
 {
+    /**
+     * Menampilkan daftar pembelian.
+     *
+     * Fungsi ini mengambil semua data pembelian dengan relasi pemasok dan user,
+     * dan menampilkannya di halaman index pembelian.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         $pembelian = Pembelian::with('pemasok', 'user')->orderBy('tanggal_masuk', 'desc')->paginate(10);
         return view('admin.pembelian.index', compact('pembelian'));
     }
 
+    /**
+     * Menampilkan form untuk menambah pembelian baru.
+     *
+     * Fungsi ini akan menampilkan form pembelian baru dengan pilihan pemasok dan kategori.
+     *
+     * @return \Illuminate\View\View
+     */
     public function create()
     {
         $pemasok = Pemasok::all();
@@ -29,6 +44,15 @@ class PembelianController extends Controller
         return view('admin.pembelian.create', compact('pemasok', 'kategori'));
     }
 
+    /**
+     * Menyimpan pembelian baru.
+     *
+     * Fungsi ini akan memvalidasi input dan menyimpan data pembelian baru
+     * beserta barang yang dibeli ke dalam database dalam sebuah transaksi.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -40,7 +64,9 @@ class PembelianController extends Controller
             'jumlah' => 'required|integer|min:1',
         ]);
 
+        // Menjalankan transaksi untuk menyimpan data pembelian dan barang
         DB::transaction(function () use ($request) {
+            // Membuat kode barang baru jika belum ada
             $kode_barang = 'BRG-' . mt_rand(100000, 999999);
 
             $barang = Barang::where('nama_barang', $request->nama_barang)
@@ -48,6 +74,7 @@ class PembelianController extends Controller
                 ->first();
 
             if (!$barang) {
+                // Jika barang belum ada, buat barang baru
                 $barang = Barang::create([
                     'kode_barang' => $kode_barang,
                     'nama_barang' => $request->nama_barang,
@@ -59,6 +86,7 @@ class PembelianController extends Controller
                     'user_id' => Auth::id(),
                 ]);
             } else {
+                // Jika barang sudah ada, update harga beli dan harga jual
                 $barang->update([
                     'satuan' => $request->satuan,
                     'harga_beli' => $request->harga_beli,
@@ -66,6 +94,7 @@ class PembelianController extends Controller
                 ]);
             }
 
+            // Membuat pembelian baru
             $pembelian = Pembelian::create([
                 'kode_masuk' => 'PB-' . str_pad(Pembelian::count() + 1, 3, '0', STR_PAD_LEFT),
                 'tanggal_masuk' => now(),
@@ -74,6 +103,7 @@ class PembelianController extends Controller
                 'pemasok_id' => $request->pemasok_id
             ]);
 
+            // Menyimpan detail pembelian
             DetailPembelian::create([
                 'pembelian_id' => $pembelian->id,
                 'barang_id' => $barang->id,
@@ -82,12 +112,23 @@ class PembelianController extends Controller
                 'sub_total' => $request->harga_beli * $request->jumlah,
             ]);
 
+            // Menambah stok barang
             $barang->increment('stok', $request->jumlah);
         });
 
+        // Redirect ke halaman daftar pembelian dengan pesan sukses
         return redirect()->route('pembelian.index')->with('success', 'Pembelian berhasil disimpan.');
     }
 
+    /**
+     * Mencari barang berdasarkan nama.
+     *
+     * Fungsi ini akan mencari barang berdasarkan input query nama barang
+     * dan mengembalikan hasil pencarian berupa 5 barang yang ditemukan.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function searchBarang(Request $request)
     {
         $query = $request->input('query');
@@ -98,17 +139,39 @@ class PembelianController extends Controller
         return response()->json($barang);
     }
 
+    /**
+     * Menampilkan detail pembelian.
+     *
+     * Fungsi ini akan menampilkan detail pembelian berdasarkan id pembelian yang dipilih.
+     *
+     * @param int $id
+     * @return \Illuminate\View\View
+     */
     public function show($id)
     {
         $pembelian = Pembelian::with('pemasok', 'user', 'detailPembelian.barang')->findOrFail($id);
         return view('admin.pembelian.show', compact('pembelian'));
     }
 
+    /**
+     * Mengekspor data pembelian ke dalam format Excel.
+     *
+     * Fungsi ini akan mengunduh file pembelian dalam format Excel.
+     *
+     * @return \Maatwebsite\Excel\Excel
+     */
     public function exportExcel()
     {
         return Excel::download(new PembelianExport, 'pembelian.xlsx');
     }
 
+    /**
+     * Mengekspor data pembelian ke dalam format PDF.
+     *
+     * Fungsi ini akan mengunduh file pembelian dalam format PDF.
+     *
+     * @return \Barryvdh\DomPDF\PDF
+     */
     public function exportPdf()
     {
         $pembelian = Pembelian::with('pemasok')->get();

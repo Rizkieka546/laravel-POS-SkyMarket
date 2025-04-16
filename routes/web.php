@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\AbsensiKerjaExport;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BarangController;
@@ -22,7 +23,8 @@ use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ScanController;
 use App\Http\Controllers\UserController;
-use App\Models\Pelanggan;
+use App\Http\Controllers\AbsensiKerjaController;
+use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -92,6 +94,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('/pengajuan/update/{id}', [AdminController::class, 'updatePengajuan'])->name('pengajuan.admin.update');
 
     Route::put('/pengajuan/{id}/update-status', [AdminController::class, 'updateStatus'])->name('pengajuan.updateStatus');
+
+    Route::get('/absensi', [AbsensiKerjaController::class, 'index'])->name('absensi.index');
+    Route::post('/absensi', [AbsensiKerjaController::class, 'store'])->name('absensi.store');
+    Route::put('/absensi/selesai/{id}', [AbsensiKerjaController::class, 'selesaiKerja'])->name('absensi.selesai');
+    Route::put('/absensi/{id}', [AbsensiKerjaController::class, 'update'])->name('absensi.update');
+    Route::delete('/absensi/{id}', [AbsensiKerjaController::class, 'destroy'])->name('absensi.destroy');
+    Route::get('/absensi/export/excel', [AbsensiKerjaController::class, 'exportExcel'])->name('absensi.export.excel');
+    Route::get('/absensi/export/pdf', [AbsensiKerjaController::class, 'exportPDF'])->name('absensi.export.pdf');
+    Route::post('/absensi/import', [AbsensiKerjaController::class, 'import'])->name('absensi.import');
 });
 
 // Role -> Kasir

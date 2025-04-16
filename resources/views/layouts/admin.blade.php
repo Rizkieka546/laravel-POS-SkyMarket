@@ -56,10 +56,15 @@
                         </a>
                     </li>
                     <li class="mb-3">
-
                         <a href="{{ route('pengajuan.admin') }}"
                             class="flex items-center px-4 py-2 rounded-lg hover:bg-teal-500">
                             <i class="fa-solid fa-clipboard-list mr-3"></i> Pengajuan
+                        </a>
+                    </li>
+                    <li class="mb-3">
+                        <a href="{{ route('absensi.index') }}"
+                            class="flex items-center px-4 py-2 rounded-lg hover:bg-teal-500">
+                            <i class="fa-solid fa-clipboard-list mr-3"></i> Absensi Kerja
                         </a>
                     </li>
 

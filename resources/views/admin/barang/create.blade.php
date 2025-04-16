@@ -39,10 +39,6 @@
                         <input type="file" name="gambar" class="w-full p-2 border rounded mb-4">
                     </div>
                 </div>
-                <div class="flex items-center mb-4">
-                    <input type="checkbox" name="ditarik" class="mr-2">
-                    <label>Barang Ditandai sebagai Ditarik</label>
-                </div>
                 <button type="submit" class="bg-blue-500 text-white p-2 rounded w-full">Simpan</button>
             </form>
         </div>
